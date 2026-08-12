@@ -237,6 +237,44 @@ function initMap() {
   window.addEventListener("resize", fit);
 }
 
+/* ================= Motion interaktif peta ================= */
+
+function initMapMotion() {
+  if (reduceMotion || typeof gsap === "undefined") return;
+
+  var visual = document.querySelector(".map-visual");
+  var viewport = document.querySelector(".map-viewport");
+  var heading = document.querySelector(".map-layer--heading");
+  if (!visual || !viewport || !heading) return;
+
+  gsap.set(viewport, { scale: 1.035, x: 0, y: 0 });
+
+  var moveViewportX = gsap.quickTo(viewport, "x", { duration: 0.8, ease: "power3.out" });
+  var moveViewportY = gsap.quickTo(viewport, "y", { duration: 0.8, ease: "power3.out" });
+  var moveHeadingX = gsap.quickTo(heading, "x", { duration: 0.65, ease: "power3.out" });
+  var moveHeadingY = gsap.quickTo(heading, "y", { duration: 0.65, ease: "power3.out" });
+
+  function move(event) {
+    var rect = visual.getBoundingClientRect();
+    var x = (event.clientX - rect.left) / rect.width * 2 - 1;
+    var y = (event.clientY - rect.top) / rect.height * 2 - 1;
+    moveViewportX(x * -12);
+    moveViewportY(y * -8);
+    moveHeadingX(x * 7);
+    moveHeadingY(y * 4);
+  }
+
+  function reset() {
+    moveViewportX(0);
+    moveViewportY(0);
+    moveHeadingX(0);
+    moveHeadingY(0);
+  }
+
+  visual.addEventListener("pointermove", move, { passive: true });
+  visual.addEventListener("pointerleave", reset, { passive: true });
+}
+
 function select(id) {
   var idx = -1;
   KABUPATEN.forEach(function (item, i) {
@@ -294,4 +332,5 @@ function select(id) {
   initLenis();
   initMap();
   initParallax();
+  initMapMotion();
 })();

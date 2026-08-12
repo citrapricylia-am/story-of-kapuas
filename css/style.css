@@ -147,9 +147,9 @@ svg {
   height: 30vh;
   background: linear-gradient(
     180deg,
-    rgba(6, 27, 14, 0) 0%,
-    rgba(6, 27, 14, 0.72) 55%,
-    var(--green-deep) 100%
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.72) 58%,
+    #000 100%
   );
   pointer-events: none;
 }
@@ -417,7 +417,8 @@ svg {
 
 .map-section {
   position: relative;
-  background: var(--green-deep);
+  padding-top: clamp(56px, 9vh, 112px);
+  background: #000;
   color: #fff;
 }
 
@@ -459,6 +460,8 @@ svg {
   right: 0;
   top: -8vh;
   height: 116vh;
+  transform-origin: center center;
+  will-change: transform;
 }
 
 .map-leaflet {
@@ -602,6 +605,7 @@ svg {
     rgba(6, 27, 14, 0.52) 48%,
     rgba(6, 27, 14, 0) 100%
   );
+  will-change: transform;
 }
 
 .map-eyebrow {
@@ -801,5 +805,10 @@ svg {
   .map-marker__halo {
     animation: none;
     opacity: 0.6;
+  }
+
+  .map-viewport,
+  .map-layer--heading {
+    transform: none !important;
   }
 }

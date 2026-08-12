@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-label="Peta stylized Kalimantan Barat dengan Sungai Kapuas">
+  <defs>
+    <linearGradient id="landGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e4529"/>
+      <stop offset="0.6" stop-color="#153622"/>
+      <stop offset="1" stop-color="#122e1d"/>
+    </linearGradient>
+    <linearGradient id="riverGrad" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7d089"/>
+      <stop offset="0.5" stop-color="#e9b95e"/>
+      <stop offset="1" stop-color="#d9a34c"/>
+    </linearGradient>
+    <filter id="riverGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+
+  <!-- Laut Natuna: garis dekoratif -->
+  <g stroke="#e9c176" stroke-opacity="0.3" stroke-width="1.2" fill="none">
+    <path d="M 70 40 A 18 18 0 0 1 96 55" stroke-dasharray="3 6"/>
+    <path d="M 120 90 A 30 30 0 0 1 155 110" stroke-dasharray="3 6"/>
+  </g>
+
+  <!-- Daratan Kalimantan Barat -->
+  <path
+    d="M 150 250
+       C 210 200, 300 180, 380 165
+       C 450 152, 520 140, 610 130
+       C 700 122, 790 115, 860 130
+       C 930 150, 960 200, 995 235
+       C 1060 290, 1095 330, 1075 420
+       C 1060 480, 1030 520, 978 545
+       C 900 575, 820 590, 700 585
+       C 590 580, 500 595, 420 585
+       C 330 572, 270 540, 230 500
+       C 180 450, 150 400, 118 372
+       C 98 350, 110 320, 135 305
+       C 150 296, 155 285, 150 270
+       Z"
+    fill="url(#landGrad)"
+    stroke="#e9c176"
+    stroke-opacity="0.5"
+    stroke-width="1.5"
+  />
+
+  <!-- Tekstur hutan -->
+  <g fill="#0d2517" opacity="0.5">
+    <circle cx="280" cy="300" r="14"/><circle cx="318" cy="272" r="9"/><circle cx="356" cy="318" r="12"/>
+    <circle cx="248" cy="352" r="8"/><circle cx="480" cy="250" r="13"/><circle cx="520" cy="282" r="10"/>
+    <circle cx="600" cy="238" r="9"/><circle cx="560" cy="530" r="15"/><circle cx="618" cy="500" r="9"/>
+    <circle cx="700" cy="512" r="12"/><circle cx="760" cy="540" r="8"/><circle cx="830" cy="470" r="11"/>
+    <circle cx="900" cy="430" r="9"/><circle cx="946" cy="496" r="13"/><circle cx="300" cy="520" r="11"/>
+    <circle cx="380" cy="260" r="7"/><circle cx="428" cy="220" r="9"/><circle cx="700" cy="200" r="8"/>
+  </g>
+
+  <!-- Taman Nasional Betung Kerihun -->
+  <g fill="#0f2918">
+    <circle cx="985" cy="318" r="46"/>
+    <circle cx="952" cy="342" r="30"/>
+    <circle cx="1020" cy="346" r="34"/>
+  </g>
+  <g fill="#0c2214">
+    <path d="M 962 320 L 983 284 L 1004 320 Z"/>
+    <path d="M 993 340 L 1014 304 L 1035 340 Z"/>
+    <path d="M 1028 318 L 1046 288 L 1064 318 Z"/>
+  </g>
+  <text x="990" y="258" fill="#d9e5d0" font-family="Montserrat, sans-serif" font-size="10" letter-spacing="1.6" text-anchor="middle">TAMAN NASIONAL</text>
+  <text x="990" y="272" fill="#d9e5d0" font-family="Montserrat, sans-serif" font-size="10" letter-spacing="1.6" text-anchor="middle">BETUNG KERIHUN</text>
+
+  <!-- Danau Sentarum -->
+  <ellipse cx="795" cy="188" rx="64" ry="26" fill="#e9c176" opacity="0.55"/>
+  <ellipse cx="795" cy="186" rx="42" ry="15" fill="#f4d78f" opacity="0.8"/>
+  <text x="795" y="148" fill="#d9e5d0" font-family="Montserrat, sans-serif" font-size="10" letter-spacing="1.6" text-anchor="middle">DANAU SENTARUM</text>
+  <text x="795" y="162" fill="#d9e5d0" font-family="Montserrat, sans-serif" font-size="9" letter-spacing="1.4" text-anchor="middle">TAMAN NASIONAL</text>
+
+  <!-- Sungai Kapuas: urat emas -->
+  <path
+    d="M 885 285
+       C 795 300, 740 345, 665 372
+       C 615 390, 565 408, 505 425
+       C 450 440, 395 448, 340 448
+       C 280 448, 230 430, 180 395
+       C 165 385, 150 372, 138 356"
+    fill="none" stroke="#e9b95e" stroke-width="11" stroke-linecap="round" opacity="0.5" filter="url(#riverGlow)"
+  />
+  <path
+    d="M 885 285
+       C 795 300, 740 345, 665 372
+       C 615 390, 565 408, 505 425
+       C 450 440, 395 448, 340 448
+       C 280 448, 230 430, 180 395
+       C 165 385, 150 372, 138 356"
+    fill="none" stroke="url(#riverGrad)" stroke-width="6.5" stroke-linecap="round"
+  />
+
+  <!-- Anak sungai -->
+  <path d="M 668 374 C 640 410, 600 442, 555 468" fill="none" stroke="url(#riverGrad)" stroke-width="3.5" stroke-linecap="round" opacity="0.65"/>
+  <path d="M 885 285 C 900 255, 904 234, 894 214" fill="none" stroke="url(#riverGrad)" stroke-width="3" stroke-linecap="round" opacity="0.55"/>
+
+  <!-- Muara / delta -->
+  <g fill="none" stroke="url(#riverGrad)" stroke-width="3" stroke-linecap="round" opacity="0.6">
+    <path d="M 138 356 L 106 330"/>
+    <path d="M 138 356 L 110 356"/>
+    <path d="M 138 356 L 118 380"/>
+  </g>
+
+  <!-- Titik kota -->
+  <g fill="#f4d189">
+    <circle cx="880" cy="283" r="4.5"/>
+    <circle cx="664" cy="370" r="4.5"/>
+    <circle cx="507" cy="423" r="4.5"/>
+  </g>
+</svg>

@@ -39,7 +39,7 @@ html.lenis body {
 }
 
 body {
-  background: var(--green-deep);
+  background: #000;
   color: #fff;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -144,11 +144,12 @@ svg {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 30vh;
+  height: 38vh;
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.72) 58%,
+    rgba(0, 0, 0, 0.22) 28%,
+    rgba(0, 0, 0, 0.72) 62%,
     #000 100%
   );
   pointer-events: none;
@@ -417,7 +418,8 @@ svg {
 
 .map-section {
   position: relative;
-  padding-top: clamp(56px, 9vh, 112px);
+  margin-top: clamp(42px, 7vh, 88px);
+  padding-top: 0;
   background: #000;
   color: #fff;
 }

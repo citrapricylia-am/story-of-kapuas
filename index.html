@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -24,6 +25,7 @@
           alt="Pemandangan Sungai Kapuas saat matahari terbit"
         />
         <div class="hero-bg__overlay" aria-hidden="true"></div>
+        <div class="hero-connector" aria-hidden="true"></div>
       </div>
 
       <div class="hero-content">
@@ -78,14 +80,11 @@
         <div class="map-layers" data-parallax-layers>
 
           <div class="map-layer map-layer--map" data-parallax-layer="1">
-            <div class="map-stage">
-              <img class="map-svg" src="assets/images/map-kapuas.svg" alt="Peta stylized Kalimantan Barat — Sungai Kapuas sebagai urat emas" />
-              <div class="map-pins" id="map-pins"></div>
+            <div class="map-viewport">
+              <div id="map" class="map-leaflet" aria-label="Peta interaktif Kabupaten Kapuas Hulu, Sintang, dan Sanggau"></div>
+              <div class="map-viewport__overlay" aria-hidden="true"></div>
+              <p class="map-credit" aria-hidden="true">© OpenStreetMap · © CARTO</p>
             </div>
-          </div>
-
-          <div class="map-layer map-layer--deco" data-parallax-layer="4" aria-hidden="true">
-            <img class="map-ring" src="assets/icons/ring-decoration.svg" alt="" />
           </div>
 
           <div class="map-layer map-layer--heading" data-parallax-layer="3">
@@ -119,6 +118,7 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

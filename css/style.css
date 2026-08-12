@@ -124,6 +124,17 @@ svg {
   );
 }
 
+/* Penyambung hero -> peta (fade krem; alt: ganti dengan rgba(18, 32, 24, ...) untuk versi hitam) */
+.hero-connector {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 22vh;
+  background: linear-gradient(180deg, rgba(250, 250, 243, 0) 0%, var(--cream) 100%);
+  pointer-events: none;
+}
+
 .hero-content {
   position: relative;
   z-index: 1;
@@ -172,14 +183,14 @@ svg {
   line-height: 16px;
   letter-spacing: 1.8px;
   margin-right: -1.8px;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--green-deep);
   transition: color 0.3s ease;
 }
 
 .explore-btn__icon {
   width: 12px;
   height: 8px;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--green-deep);
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -393,68 +404,101 @@ svg {
 .map-layer {
   position: absolute;
   inset: 0;
+  pointer-events: none;
   will-change: transform;
 }
 
-/* Lapisan 1 — peta + penanda (bergerak paling lambat: 70%) */
 .map-layer--map {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  pointer-events: auto;
 }
 
-.map-stage {
-  position: relative;
-  width: min(96vw, 150vh);
-  aspect-ratio: 1200 / 700;
-  flex: none;
-  margin-top: 20vh;
-}
-
-.map-svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.map-pins {
+/* Lapisan 1 — peta tile interaktif (Leaflet + CARTO basemap) */
+.map-layer--map {
   position: absolute;
   inset: 0;
 }
 
-.map-pin {
+.map-viewport {
   position: absolute;
-  transform: translate(-50%, -50%);
+  left: 0;
+  right: 0;
+  top: -8vh;
+  height: 116vh;
+}
+
+.map-leaflet {
+  position: absolute;
+  inset: 0;
+  background: var(--cream);
+  filter: sepia(0.22) saturate(0.68) brightness(0.965) contrast(0.98);
+}
+
+/* Tinting agar tile menyatu dengan palet krem situs */
+.map-viewport__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(250, 250, 243, 0.92) 0%,
+    rgba(250, 250, 243, 0.25) 24%,
+    rgba(250, 250, 243, 0) 42%,
+    rgba(250, 250, 243, 0) 72%,
+    rgba(250, 250, 243, 0.9) 100%
+  );
+}
+
+.map-credit {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  z-index: 500;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 9px;
+  letter-spacing: 0.8px;
+  color: rgba(6, 27, 14, 0.45);
+  pointer-events: none;
+}
+
+/* Marker kabupaten (divIcon Leaflet) */
+.leaflet-marker-icon.map-marker {
+  border: 0;
+  background: none;
+}
+
+.map-marker {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  z-index: 1;
+  cursor: pointer;
 }
 
-.map-pin__halo {
-  position: absolute;
-  top: -6px;
-  left: -6px;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(244, 209, 137, 0.9);
-  animation: pin-pulse 2.2s ease-out infinite;
-}
-
-.map-pin__dot {
-  width: 10px;
-  height: 10px;
+.map-marker__dot {
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: var(--gold);
-  box-shadow: 0 0 0 3px rgba(233, 193, 118, 0.35), 0 0 14px rgba(233, 193, 118, 0.9);
+  box-shadow: 0 0 0 3px rgba(233, 193, 118, 0.4), 0 0 16px rgba(233, 193, 118, 0.95);
   transition: transform 0.25s ease;
 }
 
-.map-pin__name {
+.map-marker__halo {
   position: absolute;
-  top: 18px;
+  top: -5px;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(244, 209, 137, 0.9);
+  animation: pin-pulse 2.2s ease-out infinite;
+  pointer-events: none;
+}
+
+.map-marker__name {
+  position: absolute;
+  top: 20px;
   white-space: nowrap;
   font-family: var(--font-sans);
   font-weight: 600;
@@ -465,13 +509,13 @@ svg {
   transition: color 0.25s ease;
 }
 
-.map-pin:hover .map-pin__dot,
-.map-pin.is-active .map-pin__dot {
+.map-marker:hover .map-marker__dot,
+.map-marker.is-active .map-marker__dot {
   transform: scale(1.35);
 }
 
-.map-pin.is-active .map-pin__name {
-  color: var(--gold);
+.map-marker.is-active .map-marker__name {
+  color: #faf3e0;
 }
 
 @keyframes pin-pulse {
@@ -487,6 +531,11 @@ svg {
     transform: scale(1.9);
     opacity: 0;
   }
+}
+
+/* Sembunyikan kontrol Leaflet bawaan yang tidak dipakai */
+.leaflet-control-container {
+  display: none;
 }
 
 /* Lapisan 3 — judul (40%) dengan scrim krem */
@@ -561,6 +610,7 @@ svg {
   box-shadow: 0 18px 40px rgba(6, 27, 14, 0.16);
   padding: 22px 24px 24px;
   text-align: left;
+  pointer-events: auto;
 }
 
 .map-card__index {
@@ -607,24 +657,6 @@ svg {
   color: rgba(6, 27, 14, 0.75);
 }
 
-/* Lapisan 4 — dekorasi foreground (10%), paling cepat */
-.map-layer--deco {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.map-ring {
-  width: 58vh;
-  height: 58vh;
-  color: var(--green-deep);
-  opacity: 0.35;
-  margin-left: -20vh;
-  margin-bottom: -20vh;
-}
-
 /* Fade bawah viewport visual */
 .map-visual__fade {
   position: absolute;
@@ -634,6 +666,7 @@ svg {
   height: 22vh;
   background: linear-gradient(180deg, rgba(250, 250, 243, 0) 0%, var(--cream) 100%);
   pointer-events: none;
+  z-index: 3;
 }
 
 /* Konten setelah scene (parallax__content) — sekaligus jarak drive sticky */
@@ -702,18 +735,10 @@ svg {
 }
 
 @media (max-width: 768px) {
-  .map-stage {
-    margin-top: 30vh;
-  }
   .map-card {
     right: 20px;
     bottom: 4vh;
     width: calc(100% - 40px);
-  }
-  .map-pin__name {
-    font-size: 9px;
-    letter-spacing: 1.2px;
-    top: 16px;
   }
   .map-layer--heading {
     padding-top: 3vh;
@@ -724,7 +749,7 @@ svg {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .map-pin__halo {
+  .map-marker__halo {
     animation: none;
     opacity: 0.6;
   }

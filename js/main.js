@@ -52,7 +52,7 @@
 
   function initLenis() {
     if (reduceMotion || typeof Lenis === "undefined") return;
-    lenis = new Lenis({ lerp: 0.085 });
+    lenis = new Lenis({ lerp: 0.085, autoRaf: false });
     if (typeof ScrollTrigger !== "undefined") {
       lenis.on("scroll", ScrollTrigger.update);
     }
@@ -107,9 +107,64 @@
 
 /* ================= Peta interaktif (Leaflet tile map) ================= */
 
+var TILE_SOURCES = [
+  {
+    name: "carto",
+    url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+    options: { subdomains: "abcd", maxZoom: 19, maxNativeZoom: 18 }
+  },
+  {
+    name: "osm",
+    url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    options: { maxZoom: 19, maxNativeZoom: 18 }
+  },
+  {
+    name: "esri",
+    url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+    options: { maxZoom: 18 }
+  }
+];
+
+var tileSourceIndex = 0;
+var tileLayer = null;
+
+function attachTiles() {
+  if (!map) return;
+  if (tileLayer) map.removeLayer(tileLayer);
+
+  var loading = document.getElementById("map-loading");
+  var src = TILE_SOURCES[tileSourceIndex];
+
+  if (!src) {
+    if (loading) loading.textContent = "Peta tidak dapat dimuat — periksa koneksi internet.";
+    return;
+  }
+
+  tileLayer = L.tileLayer(src.url, Object.assign({}, src.options));
+  var failed = false;
+
+  tileLayer.on("tileerror", function () {
+    if (failed) return;
+    failed = true;
+    tileSourceIndex += 1;
+    attachTiles();
+  });
+
+  tileLayer.on("load", function () {
+    if (loading) loading.style.display = "none";
+  });
+
+  tileLayer.addTo(map);
+}
+
 function initMap() {
   var mapEl = document.getElementById("map");
-  if (!mapEl || typeof L === "undefined" || !card) return;
+  if (!mapEl || !card) return;
+
+  if (typeof L === "undefined") {
+    mapEl.textContent = "Peta tidak dapat dimuat — pastikan koneksi internet tersedia.";
+    return;
+  }
 
   map = L.map(mapEl, {
     zoomControl: false,
@@ -119,11 +174,7 @@ function initMap() {
     keyboard: false
   });
 
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-    subdomains: "abcd",
-    maxZoom: 19,
-    maxNativeZoom: 18
-  }).addTo(map);
+  attachTiles();
 
   var bounds = [];
 

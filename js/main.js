@@ -41,7 +41,7 @@
   var exploreBtn = document.getElementById("explore-btn");
   var natureSoundsBtn = document.getElementById("nature-sounds-btn");
   var menuBtn = document.getElementById("menu-btn");
-  var card = document.getElementById("map-card");
+
   var lenis = null;
   var map = null;
   var markers = [];
@@ -118,7 +118,7 @@ var TILE_SOURCES = [];
 if (MAPTILER_KEY) {
   TILE_SOURCES.push({
     name: "maptiler",
-    url: "https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=" + encodeURIComponent(MAPTILER_KEY),
+    url: "https://api.maptiler.com/maps/streets-v2-dark/{z}/{x}/{y}.png?key=" + encodeURIComponent(MAPTILER_KEY),
     options: { maxZoom: 20, maxNativeZoom: 18, tileSize: 256 }
   });
 }
@@ -184,7 +184,7 @@ function attachTiles() {
 
 function initMap() {
   var mapEl = document.getElementById("map");
-  if (!mapEl || !card) return;
+  if (!mapEl) return;
 
   if (typeof L === "undefined") {
     mapEl.textContent = "Peta tidak dapat dimuat — pastikan koneksi internet tersedia.";
@@ -256,24 +256,7 @@ function select(id) {
     }
   });
 
-  renderCard(KABUPATEN[idx], idx);
 }
-
-  function renderCard(item, idx) {
-    if (!card) return;
-    var num = String(idx + 1).padStart(2, "0");
-    card.innerHTML =
-      '<span class="map-card__index">' + num + "</span>" +
-      '<p class="map-card__cat">' + item.cat + "</p>" +
-      '<h3 class="map-card__name">' + item.nama + "</h3>" +
-      '<p class="map-card__city">' + item.ibu + "</p>" +
-      '<p class="map-card__desc">' + item.desk + "</p>";
-  }
-
-  function initMapData() {
-    if (!card) return;
-    renderCard(KABUPATEN[0], 0);
-  }
 
   /* ================= Header: tombol ================= */
 
@@ -309,7 +292,6 @@ function select(id) {
   /* ================= Init ================= */
 
   initLenis();
-  initMapData();
   initMap();
   initParallax();
 })();

@@ -39,7 +39,7 @@ html.lenis body {
 }
 
 body {
-  background: var(--cream);
+  background: var(--green-deep);
   color: #fff;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -490,10 +490,10 @@ svg {
   pointer-events: none;
   background: linear-gradient(
     180deg,
-    rgba(6, 27, 14, 0.82) 0%,
-    rgba(6, 27, 14, 0.12) 25%,
-    rgba(6, 27, 14, 0.04) 60%,
-    rgba(6, 27, 14, 0.78) 100%
+    rgba(6, 27, 14, 0.56) 0%,
+    rgba(6, 27, 14, 0.04) 24%,
+    rgba(6, 27, 14, 0.02) 64%,
+    rgba(6, 27, 14, 0.62) 100%
   );
 }
 

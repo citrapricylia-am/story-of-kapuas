@@ -418,8 +418,8 @@ svg {
 
 .map-section {
   position: relative;
-  margin-top: clamp(42px, 7vh, 88px);
-  padding-top: 0;
+  margin-top: 0;
+  padding-top: clamp(42px, 7vh, 88px);
   background: #000;
   color: #fff;
 }

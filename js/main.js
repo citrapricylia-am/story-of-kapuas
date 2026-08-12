@@ -70,44 +70,59 @@
     }
   }
 
-  /* ================= Parallax map (GSAP ScrollTrigger) ================= */
+  /* ================= Parallax hero (GSAP ScrollTrigger) ================= */
 
   function initParallax() {
-    if (reduceMotion || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
-    var section = document.querySelector(".map-section");
-    var visual = document.querySelector(".map-visual");
-    var layersEl = document.querySelector("[data-parallax-layers]");
-    if (!section || !visual || !layersEl) return;
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+    var hero = document.querySelector(".hero");
+    if (!hero) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
-    var tl = gsap.timeline({
+    var bg = hero.querySelector('[data-parallax-hero="1"]');
+    var content = hero.querySelector('[data-parallax-hero="2"]');
+    var explore = hero.querySelector('[data-parallax-hero="3"]');
+    var image = hero.querySelector(".hero-bg__img");
+
+    if (reduceMotion) {
+      gsap.set([bg, content, explore], { clearProps: "transform" });
+      return;
+    }
+
+    // Satu timeline scrubbed untuk mencegah tiap elemen bergerak dengan ritme berbeda.
+    var timeline = gsap.timeline({
       scrollTrigger: {
-        trigger: section,
+        trigger: hero,
         start: "top top",
-        end: "bottom bottom",
-        scrub: 0.8
+        end: "bottom top",
+        scrub: 0.55,
+        invalidateOnRefresh: true
       }
     });
 
-    var layers = [
-      { layer: "1", yPercent: 70 },
-      { layer: "2", yPercent: 55 },
-      { layer: "3", yPercent: 40 }
-    ];
-
-    layers.forEach(function (layerObj, idx) {
-      tl.to(
-        layersEl.querySelectorAll('[data-parallax-layer="' + layerObj.layer + '"]'),
-        { yPercent: layerObj.yPercent, ease: "none" },
-        idx === 0 ? undefined : "<"
-      );
-    });
+    timeline
+      .to(image, { yPercent: 18, scale: 1.08, ease: "none" }, 0)
+      .to(bg, { yPercent: 7, ease: "none" }, 0)
+      .to(content, { yPercent: -15, autoAlpha: 0.18, ease: "none" }, 0)
+      .to(explore, { yPercent: 25, autoAlpha: 0, ease: "none" }, 0);
   }
 
-/* ================= Peta interaktif (Leaflet tile map) ================= */
+/* ================= Peta interaktif (MapTiler + Leaflet) ================= */
 
-var TILE_SOURCES = [
+var MAPTILER_KEY = (document.querySelector('meta[name="maptiler-api-key"]') || {}).content || "";
+var queryKey = new URLSearchParams(window.location.search).get("maptilerKey");
+if (queryKey) MAPTILER_KEY = queryKey;
+
+var TILE_SOURCES = [];
+if (MAPTILER_KEY) {
+  TILE_SOURCES.push({
+    name: "maptiler",
+    url: "https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=" + encodeURIComponent(MAPTILER_KEY),
+    options: { maxZoom: 20, maxNativeZoom: 18, tileSize: 256 }
+  });
+}
+TILE_SOURCES.push(
   {
     name: "carto",
     url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
@@ -123,7 +138,7 @@ var TILE_SOURCES = [
     url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
     options: { maxZoom: 18 }
   }
-];
+);
 
 var tileSourceIndex = 0;
 var tileLayer = null;
@@ -140,18 +155,28 @@ function attachTiles() {
     return;
   }
 
-  tileLayer = L.tileLayer(src.url, Object.assign({}, src.options));
+  tileLayer = L.tileLayer(src.url, Object.assign({}, src.options, {
+    attribution: src.name === "maptiler" ? "© MapTiler © OpenStreetMap contributors" : "© OpenStreetMap © CARTO"
+  }));
   var failed = false;
 
   tileLayer.on("tileerror", function () {
     if (failed) return;
     failed = true;
+    // Jika key MapTiler salah atau tile service gagal, tetap tampilkan peta cadangan.
     tileSourceIndex += 1;
-    attachTiles();
+    if (tileSourceIndex < TILE_SOURCES.length) attachTiles();
+    else if (loading) loading.textContent = "Peta tidak dapat dimuat — periksa koneksi internet.";
   });
 
   tileLayer.on("load", function () {
     if (loading) loading.style.display = "none";
+    var credit = document.getElementById("map-credit");
+    if (credit) {
+      credit.textContent = src.name === "maptiler"
+        ? "© MapTiler · © OpenStreetMap contributors"
+        : "© OpenStreetMap · © CARTO";
+    }
   });
 
   tileLayer.addTo(map);

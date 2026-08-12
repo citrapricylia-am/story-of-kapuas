@@ -74,31 +74,40 @@
     </header>
 
     <section class="map-section" id="peta" aria-labelledby="map-title">
-      <div class="map-visual" data-parallax-layers>
-        <div class="map-layer map-layer--map" data-parallax-layer="1">
-          <div class="map-stage">
-            <img class="map-svg" src="assets/images/map-kapuas.svg" alt="Peta stylized Kalimantan Barat — Sungai Kapuas sebagai urat emas" />
-            <div class="map-pins" id="map-pins"></div>
+      <div class="map-visual">
+        <div class="map-layers" data-parallax-layers>
+
+          <div class="map-layer map-layer--map" data-parallax-layer="1">
+            <div class="map-stage">
+              <img class="map-svg" src="assets/images/map-kapuas.svg" alt="Peta stylized Kalimantan Barat — Sungai Kapuas sebagai urat emas" />
+              <div class="map-pins" id="map-pins"></div>
+            </div>
           </div>
-        </div>
 
-        <div class="map-layer map-layer--heading" data-parallax-layer="3">
-          <p class="map-eyebrow">PETA WILAYAH</p>
-          <h2 id="map-title" class="map-title">Pilih Destinasi</h2>
-          <p class="map-sub">Telusuri urat emas Sungai Kapuas — pilih sebuah kabupaten untuk
-            mengungkap rahasia hulu, warisan, dan biodiversitasnya.</p>
-        </div>
+          <div class="map-layer map-layer--deco" data-parallax-layer="4" aria-hidden="true">
+            <img class="map-ring" src="assets/icons/ring-decoration.svg" alt="" />
+          </div>
 
-        <div class="map-layer map-layer--markers" data-parallax-layer="2">
-          <aside class="map-card" id="map-card" aria-live="polite"></aside>
-        </div>
+          <div class="map-layer map-layer--heading" data-parallax-layer="3">
+            <span class="map-eyebrow"><span class="map-eyebrow__line" aria-hidden="true"></span>PETA WILAYAH</span>
+            <h2 id="map-title" class="map-title">Pilih Destinasi</h2>
+            <p class="map-sub">Telusuri urat emas Sungai Kapuas — pilih sebuah kabupaten untuk
+              mengungkap rahasia hulu, warisan, dan biodiversitasnya.</p>
+          </div>
 
-        <div class="map-layer map-layer--deco" data-parallax-layer="4" aria-hidden="true">
-          <img class="map-ring" src="assets/icons/ring-decoration.svg" alt="" />
+          <div class="map-layer map-layer--markers" data-parallax-layer="2">
+            <aside class="map-card" id="map-card" aria-live="polite"></aside>
+          </div>
+
         </div>
+        <div class="map-visual__fade" aria-hidden="true"></div>
       </div>
 
-      <div class="map-spacer" aria-hidden="true"></div>
+      <div class="map-content">
+        <p class="map-content__kicker">BERIKUTNYA</p>
+        <h3 class="map-content__title">Perjalanan di Hulu Baru Saja Dimulai</h3>
+        <p class="map-content__desc">Dari muara ke hulu — narasi Sungai Kapuas terus mengalir.</p>
+      </div>
     </section>
 
     <footer class="site-footer">

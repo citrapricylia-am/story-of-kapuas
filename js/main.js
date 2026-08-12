@@ -73,16 +73,18 @@
 
   function initParallax() {
     if (reduceMotion || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
-    var trigger = document.querySelector("[data-parallax-layers]");
-    if (!trigger) return;
+    var section = document.querySelector(".map-section");
+    var visual = document.querySelector(".map-visual");
+    var layersEl = document.querySelector("[data-parallax-layers]");
+    if (!section || !visual || !layersEl) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
     var tl = gsap.timeline({
       scrollTrigger: {
-        trigger: trigger,
-        start: "0% 0%",
-        end: "100% 0%",
+        trigger: section,
+        start: "top top",
+        end: "bottom bottom",
         scrub: 0
       }
     });
@@ -96,7 +98,7 @@
 
     layers.forEach(function (layerObj, idx) {
       tl.to(
-        trigger.querySelectorAll('[data-parallax-layer="' + layerObj.layer + '"]'),
+        layersEl.querySelectorAll('[data-parallax-layer="' + layerObj.layer + '"]'),
         { yPercent: layerObj.yPercent, ease: "none" },
         idx === 0 ? undefined : "<"
       );

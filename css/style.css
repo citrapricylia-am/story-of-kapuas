@@ -29,6 +29,7 @@ body {
   color: #fff;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 button,
@@ -65,7 +66,6 @@ svg {
 .page {
   position: relative;
   width: 100%;
-  overflow: hidden;
 }
 
 /* Dekorasi ring (mockup: vector.svg besar di sisi kiri) */
@@ -365,21 +365,29 @@ svg {
 }
 
 /* ============================================================
-   SECTION PETA — PARALLAX (GSAP ScrollTrigger + Lenis)
+   SECTION PETA — PARALLAX PINNED (GSAP ScrollTrigger + Lenis)
+   Struktur mengikuti referensi: parallax__header (visual pinned)
+   + parallax__content (konten yang menimpa saat pin lepas)
    ============================================================ */
 
 .map-section {
   position: relative;
-  height: 200vh;
   background: var(--cream);
   color: var(--green-deep);
 }
 
+/* Viewport visual — sticky: terkunci di layar selama section di-scroll */
 .map-visual {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.map-layers {
   position: absolute;
   inset: 0;
   height: 100vh;
-  overflow: hidden;
 }
 
 .map-layer {
@@ -388,19 +396,19 @@ svg {
   will-change: transform;
 }
 
-/* Lapisan 1 — peta + penanda (bergerak paling lambat) */
+/* Lapisan 1 — peta + penanda (bergerak paling lambat: 70%) */
 .map-layer--map {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 22vh;
 }
 
 .map-stage {
   position: relative;
-  width: min(94vw, 130vh);
+  width: min(96vw, 150vh);
   aspect-ratio: 1200 / 700;
   flex: none;
+  margin-top: 20vh;
 }
 
 .map-svg {
@@ -481,30 +489,40 @@ svg {
   }
 }
 
-/* Lapisan 3 — judul dengan scrim krem */
+/* Lapisan 3 — judul (40%) dengan scrim krem */
 .map-layer--heading {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding-top: 6vh;
+  padding-top: 5vh;
   padding-left: var(--header-pad);
   padding-right: var(--header-pad);
   background: linear-gradient(
     180deg,
     var(--cream) 0%,
-    var(--cream) 62%,
+    var(--cream) 60%,
     rgba(250, 250, 243, 0) 100%
   );
 }
 
 .map-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
   font-family: var(--font-sans);
   font-weight: 600;
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 2.4px;
   color: var(--gold);
+}
+
+.map-eyebrow__line {
+  display: inline-block;
+  width: 34px;
+  height: 1px;
+  background: rgba(233, 193, 118, 0.8);
 }
 
 .map-title {
@@ -528,7 +546,7 @@ svg {
   color: rgba(6, 27, 14, 0.65);
 }
 
-/* Lapisan 2 — kartu info destinasi */
+/* Lapisan 2 — kartu info destinasi (55%) */
 .map-layer--markers {
   z-index: 2;
 }
@@ -536,7 +554,7 @@ svg {
 .map-card {
   position: absolute;
   right: 5vw;
-  bottom: 7vh;
+  bottom: 6vh;
   width: min(320px, 42vw);
   background: rgba(250, 250, 243, 0.94);
   border-top: 3px solid var(--gold);
@@ -589,22 +607,72 @@ svg {
   color: rgba(6, 27, 14, 0.75);
 }
 
-/* Lapisan 4 — dekorasi foreground */
+/* Lapisan 4 — dekorasi foreground (10%), paling cepat */
 .map-layer--deco {
   display: flex;
   align-items: flex-end;
-  justify-content: flex-end;
+  justify-content: flex-start;
   pointer-events: none;
-  z-index: 0;
+  overflow: hidden;
 }
 
 .map-ring {
   width: 58vh;
   height: 58vh;
   color: var(--green-deep);
-  opacity: 0.4;
-  margin-right: -18vh;
-  margin-bottom: -18vh;
+  opacity: 0.35;
+  margin-left: -20vh;
+  margin-bottom: -20vh;
+}
+
+/* Fade bawah viewport visual */
+.map-visual__fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 22vh;
+  background: linear-gradient(180deg, rgba(250, 250, 243, 0) 0%, var(--cream) 100%);
+  pointer-events: none;
+}
+
+/* Konten setelah scene (parallax__content) — sekaligus jarak drive sticky */
+.map-content {
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream);
+  text-align: center;
+  padding: 16vh var(--header-pad) 18vh;
+}
+
+.map-content__kicker {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 2.4px;
+  color: rgba(233, 193, 118, 0.9);
+}
+
+.map-content__title {
+  margin-top: 14px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.8px;
+  color: var(--green-deep);
+}
+
+.map-content__desc {
+  margin-top: 12px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  color: rgba(6, 27, 14, 0.6);
 }
 
 /* Footer */
@@ -634,12 +702,12 @@ svg {
 }
 
 @media (max-width: 768px) {
-  .map-layer--map {
-    padding-top: 24vh;
+  .map-stage {
+    margin-top: 30vh;
   }
   .map-card {
     right: 20px;
-    bottom: 6vh;
+    bottom: 4vh;
     width: calc(100% - 40px);
   }
   .map-pin__name {
@@ -648,7 +716,10 @@ svg {
     top: 16px;
   }
   .map-layer--heading {
-    padding-top: 4vh;
+    padding-top: 3vh;
+  }
+  .map-content {
+    padding: 10vh var(--header-pad) 12vh;
   }
 }
 

@@ -1,0 +1,377 @@
+/* ============================================================
+   STORY OF KAPUAS — HOMEPAGE
+   Design tokens mengikuti mockup:
+   - Playfair Display (judul) + Montserrat (label/nav)
+   - Palet: krem #FAFAF3, emas #E9C176, hijau gelap rgba(6,27,14,…)
+   ============================================================ */
+
+:root {
+  --cream: #fafaf3;
+  --gold: #e9c176;
+  --green-deep: #061b0e;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --header-pad: 80px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream);
+  color: #fff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+a {
+  appearance: none;
+  background: none;
+  border: 0;
+  outline: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+img,
+svg {
+  display: block;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--green-deep);
+}
+
+/* ---------------- Halaman ---------------- */
+
+.page {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Dekorasi ring (mockup: vector.svg besar di sisi kiri) */
+.ring-decoration {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1024px;
+  max-width: 100%;
+  pointer-events: none;
+  color: var(--cream);
+  z-index: 0;
+}
+
+.ring-decoration__img {
+  width: 100%;
+  height: auto;
+}
+
+/* ---------------- Hero ---------------- */
+
+.hero {
+  position: relative;
+  min-height: 1024px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-bg__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  flex: 1 1 auto;
+  align-self: stretch;
+}
+
+.hero-bg__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 27, 14, 0.3) 0%,
+    rgba(6, 27, 14, 0) 50%,
+    rgba(6, 27, 14, 0.8) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1024px;
+  width: 100%;
+  padding: 0 var(--header-pad);
+  text-align: center;
+}
+
+.hero-eyebrow {
+  opacity: 0.9;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 2.4px;
+  text-transform: none;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 80px;
+  letter-spacing: -1.44px;
+  color: #fff;
+  text-shadow:
+    0 10px 8px rgba(0, 0, 0, 0.04),
+    0 4px 3px rgba(0, 0, 0, 0.1);
+  max-width: 896px;
+}
+
+/* ---------------- Tombol "Mulai Telusuri" ---------------- */
+
+.explore-btn {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.explore-btn__label {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 1.8px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s ease;
+}
+
+.explore-btn__icon {
+  width: 12px;
+  height: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.explore-btn:hover .explore-btn__label,
+.explore-btn:hover .explore-btn__icon {
+  color: var(--gold);
+}
+
+.explore-btn:hover .explore-btn__icon {
+  transform: translateY(3px);
+}
+
+/* ---------------- Header ---------------- */
+
+.site-header {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px var(--header-pad);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: -1.2px;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-sounds {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 2px;
+  color: #fff;
+}
+
+.nav-sounds__icon {
+  width: 18px;
+  height: 17.5px;
+}
+
+.nav-sounds__label {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 1.8px;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.nav-sounds:hover .nav-sounds__label {
+  color: var(--gold);
+}
+
+.nav-sounds[aria-pressed="true"] {
+  color: var(--gold);
+}
+
+.nav-sounds[aria-pressed="true"] .nav-sounds__label {
+  color: var(--gold);
+}
+
+.nav-sounds[aria-pressed="true"] .nav-sounds__icon {
+  animation: sound-pulse 1.6s ease-in-out infinite;
+}
+
+.nav-menu {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 24px;
+  border-radius: 2px;
+  color: #fff;
+}
+
+.nav-menu svg {
+  width: 18px;
+  height: 12px;
+}
+
+.nav-menu:hover {
+  color: var(--gold);
+}
+
+/* ---------------- Animasi (sesuai mockup) ---------------- */
+
+.animate-fade-in {
+  animation: fade-in 1s var(--animation-delay, 0s) ease forwards;
+}
+
+.animate-fade-up {
+  animation: fade-up 1s var(--animation-delay, 0s) ease forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sound-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+/* ---------------- Responsive ---------------- */
+
+@media (max-width: 1024px) {
+  :root {
+    --header-pad: 40px;
+  }
+  .hero-title {
+    font-size: clamp(44px, 6.5vw, 64px);
+    line-height: 1.15;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --header-pad: 20px;
+  }
+  .site-header {
+    padding-top: 12px;
+  }
+  .logo {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .hero-eyebrow {
+    letter-spacing: 1.8px;
+  }
+  .hero-title {
+    font-size: clamp(30px, 8.5vw, 44px);
+    letter-spacing: -0.8px;
+  }
+  .nav-sounds__label {
+    display: none;
+  }
+  .nav-menu {
+    padding-left: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-fade-in,
+  .animate-fade-up {
+    animation: none;
+  }
+}

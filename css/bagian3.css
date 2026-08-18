@@ -70,7 +70,7 @@ a { color: inherit; text-decoration: none; }
 .htxt--a { grid-area: txt-a; }
 .htxt--b { grid-area: txt-b; }
 .hfig--b { grid-area: fig-b; }
-.hfig { position: relative; max-width: min(100%, 350px); margin-inline: auto; }
+.hfig { position: relative; max-width: min(100%, 320px); margin-inline: auto; }
 .hfig img {
   width: 100%;
   max-height: clamp(240px, 40vh, 460px);
@@ -79,6 +79,7 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
   display: block;
 }
+@media (min-height: 741px) { .hfig { max-width: min(100%, 350px); } }
 @media (min-height: 769px) { .hfig { max-width: min(100%, 440px); } }
 @media (min-height: 950px) { .hfig { max-width: min(100%, 570px); } }
 @media (min-height: 1200px) { .hfig { max-width: min(100%, 660px); } }
@@ -119,6 +120,9 @@ a { color: inherit; text-decoration: none; }
     grid-template-areas: "fig-a" "txt-a" "fig-b" "txt-b";
   }
   .hfigs, .htxts { display: contents; }
+}
+@media (max-height: 800px) {
+  .page-hero { padding-bottom: 8px; }
 }
 
 /* ---------- Header ---------- */

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/bagian3.css?v=18" />
+  <link rel="stylesheet" href="css/bagian3.css?v=19" />
 </head>
 <body class="b3">
   <header class="hdr">
@@ -122,7 +122,10 @@
       window.addEventListener('resize', fitHero);
       window.addEventListener('load', fitHero);
       fitHero();
-      setTimeout(fitHero, 600);
+      [600, 1200, 2000, 3000].forEach(function (t) { setTimeout(fitHero, t); });
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(fitHero);
+      }
     })();
   </script>
 </body>

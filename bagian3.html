@@ -482,8 +482,6 @@
     </div>
   </div>
 
-  <div class="pagenum" id="pagenum">01</div>
-
   <button class="navbtn navbtn--prev" id="prev" aria-label="Slide sebelumnya">‹</button>
   <button class="navbtn navbtn--next" id="next" aria-label="Slide berikutnya">›</button>
 
@@ -491,7 +489,6 @@
     (function () {
       var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
       var stage = document.getElementById('stage');
-      var pagenum = document.getElementById('pagenum');
       var prevBtn = document.getElementById('prev');
       var nextBtn = document.getElementById('next');
       var burger = document.getElementById('burger');
@@ -511,7 +508,6 @@
           if (instant) sl.classList.toggle('is-on', on);
           else sl.classList.toggle('is-on', on);
         });
-        pagenum.textContent = ('0' + (cur + 1)).slice(-2);
         prevBtn.disabled = cur === 0;
         nextBtn.disabled = cur === slides.length - 1;
         try { history.replaceState(null, '', '#slide-' + (cur + 1)); } catch (e) {}

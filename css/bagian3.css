@@ -31,7 +31,7 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 clamp(1.2rem, 4vw, 3.6rem) clamp(12px, 2vh, 20px);
+  padding: 0 clamp(1.2rem, 4vw, 3.6rem) clamp(12px, 2vh, 16px);
 }
 .page-hero__inner {
   width: 100%;
@@ -62,7 +62,7 @@ a { color: inherit; text-decoration: none; }
   grid-template-areas:
     "fig-a txt-a"
     "fig-b txt-b";
-  gap: clamp(12px, 1.6vw, 16px) clamp(24px, 4vw, 56px);
+  gap: clamp(8px, 1.2vw, 12px) clamp(40px, 5vw, 64px);
   align-items: center;
   margin-top: clamp(10px, 1.6vh, 16px);
 }
@@ -80,9 +80,9 @@ a { color: inherit; text-decoration: none; }
   display: block;
 }
 @media (min-height: 741px) { .hfig { max-width: min(100%, 350px); } }
-@media (min-height: 769px) { .hfig { max-width: min(100%, 440px); } }
-@media (min-height: 950px) { .hfig { max-width: min(100%, 570px); } }
-@media (min-height: 1200px) { .hfig { max-width: min(100%, 660px); } }
+@media (min-height: 769px) { .hfig { max-width: min(100%, 450px); } }
+@media (min-height: 950px) { .hfig { max-width: min(100%, 580px); } }
+@media (min-height: 1200px) { .hfig { max-width: min(100%, 670px); } }
 .hcap {
   position: absolute;
   inset-inline: 0;

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/bagian3.css?v=10" />
+  <link rel="stylesheet" href="css/bagian3.css?v=11" />
 </head>
 <body class="b3">
   <header class="hdr">
@@ -501,6 +501,12 @@
         el.style.transform = 'scale(' + s + ')';
       }
 
+      function refreshNav() {
+        prevBtn.disabled = !deckVisible();
+        nextBtn.disabled = deckVisible() && cur === slides.length - 1;
+      }
+      window.addEventListener('scroll', refreshNav, { passive: true });
+
       function show(n, instant) {
         cur = Math.max(0, Math.min(slides.length - 1, n));
         slides.forEach(function (sl, i) {
@@ -508,8 +514,7 @@
           if (instant) sl.classList.toggle('is-on', on);
           else sl.classList.toggle('is-on', on);
         });
-        prevBtn.disabled = cur === 0;
-        nextBtn.disabled = cur === slides.length - 1;
+        refreshNav();
         try { history.replaceState(null, '', '#slide-' + (cur + 1)); } catch (e) {}
       }
 
@@ -524,16 +529,37 @@
         var r = stage.getBoundingClientRect();
         return r.top < window.innerHeight && r.bottom > 0;
       }
+      function toDeck() {
+        window.scrollTo({ top: stage.offsetTop, behavior: 'smooth' });
+        show(0);
+      }
+      function toHero() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
 
-      prevBtn.addEventListener('click', function () { show(cur - 1); });
-      nextBtn.addEventListener('click', function () { show(cur + 1); });
+      prevBtn.addEventListener('click', function () {
+        if (deckVisible() && cur === 0) { toHero(); return; }
+        show(cur - 1);
+      });
+      nextBtn.addEventListener('click', function () {
+        if (!deckVisible()) { toDeck(); return; }
+        show(cur + 1);
+      });
       document.addEventListener('keydown', function (e) {
-        if (!deckVisible()) return;
-        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); show(cur + 1); }
-        if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(cur - 1); }
-        if (e.key === 'Home') { e.preventDefault(); show(0); }
-        if (e.key === 'End') { e.preventDefault(); show(slides.length - 1); }
-        if (e.key === 'Escape') closeMenu();
+        if (e.key === 'Escape') { closeMenu(); return; }
+        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+          e.preventDefault();
+          if (!deckVisible()) { toDeck(); return; }
+          show(cur + 1);
+        }
+        if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          e.preventDefault();
+          if (!deckVisible()) return;
+          if (cur === 0) { toHero(); return; }
+          show(cur - 1);
+        }
+        if (e.key === 'Home') { e.preventDefault(); toHero(); show(0); }
+        if (e.key === 'End') { e.preventDefault(); toDeck(); show(slides.length - 1); }
       });
       var ts = null;
       document.addEventListener('touchstart', function (e) { ts = e.touches[0].clientX; }, { passive: true });
@@ -564,11 +590,9 @@
           var id = a.getAttribute('href').slice(1);
           var target = document.getElementById(id);
           var idx = slides.indexOf(target);
+          if (idx >= 0) toDeck();
+          else window.scrollTo({ top: 0, behavior: 'smooth' });
           if (idx >= 0) show(idx);
-          else {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            show(0);
-          }
         });
       });
       document.addEventListener('click', function (e) {

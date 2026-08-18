@@ -12,6 +12,8 @@
 
 html, body { height: 100%; }
 
+html { scroll-snap-type: y proximity; }
+
 body.b3 {
   font-family: var(--sans);
   font-weight: 300;
@@ -30,6 +32,7 @@ img { display: block; max-width: 100%; }
   align-items: center;
   justify-content: center;
   padding: clamp(28px, 5vh, 56px) clamp(16px, 4vw, 48px) clamp(24px, 4vh, 44px);
+  scroll-snap-align: start;
 }
 .page-hero__inner {
   width: 100%;
@@ -111,12 +114,11 @@ img { display: block; max-width: 100%; }
 
 /* ---------- Stage (1440x1024 scaled to fit) ---------- */
 .stage {
-  position: sticky;
-  top: 0;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  scroll-snap-align: start;
 }
 .stage__inner {
   position: relative;

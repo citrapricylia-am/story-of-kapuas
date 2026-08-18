@@ -29,7 +29,7 @@ img { display: block; max-width: 100%; }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(80px, 12vh, 128px) clamp(16px, 4vw, 48px) clamp(48px, 8vh, 80px);
+  padding: clamp(28px, 5vh, 56px) clamp(16px, 4vw, 48px) clamp(24px, 4vh, 44px);
 }
 .page-hero__inner {
   width: 100%;
@@ -39,19 +39,21 @@ img { display: block; max-width: 100%; }
 .hkicker {
   font-family: var(--sans);
   font-weight: 600;
-  font-size: clamp(14px, 1.5vw, 18px);
+  font-size: clamp(12px, 1.3vw, 15px);
   letter-spacing: 0.34em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.9);
+  text-align: center;
 }
 .htitle {
   font-family: var(--serif);
   font-weight: 600;
-  font-size: clamp(32px, 4.6vw, 56px);
+  font-size: clamp(24px, 3.4vw, 40px);
   line-height: 1.18;
   color: var(--white);
-  margin-top: 10px;
-  max-width: 18ch;
+  margin: 8px auto 0;
+  max-width: 34ch;
+  text-align: center;
 }
 .page-hero__grid {
   display: grid;
@@ -59,31 +61,32 @@ img { display: block; max-width: 100%; }
   grid-template-areas:
     "fig-a txt-a"
     "txt-b fig-b";
-  gap: clamp(20px, 3vw, 44px);
+  gap: clamp(14px, 2vw, 26px);
   align-items: center;
-  margin-top: clamp(28px, 4vw, 56px);
+  margin-top: clamp(14px, 2vw, 26px);
 }
 .hfig--a { grid-area: fig-a; }
 .htxt--a { grid-area: txt-a; }
 .htxt--b { grid-area: txt-b; }
 .hfig--b { grid-area: fig-b; }
+.hfig { max-width: min(100%, clamp(260px, 24vw, 420px)); margin-inline: auto; }
 .hfig img {
   width: 100%;
   height: auto;
   object-fit: cover;
-  border-radius: 16px;
+  border-radius: 14px;
   box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
 }
 .hcap {
-  margin-top: 10px;
-  font-size: clamp(11px, 1.1vw, 13px);
-  line-height: 1.5;
+  margin-top: 6px;
+  font-size: clamp(10px, 0.9vw, 12px);
+  line-height: 1.45;
   color: rgba(255, 255, 255, 0.82);
 }
 .hcap strong {
   display: block;
   font-weight: 500;
-  font-size: clamp(12px, 1.2vw, 14px);
+  font-size: clamp(11px, 1vw, 13px);
   color: var(--white);
 }
 .hcap span {
@@ -92,8 +95,8 @@ img { display: block; max-width: 100%; }
   opacity: 0.75;
 }
 .htxt {
-  font-size: clamp(15px, 1.35vw, 18px);
-  line-height: 1.75;
+  font-size: clamp(13px, 1.05vw, 15px);
+  line-height: 1.65;
 }
 .htxt p { margin-bottom: 1.25em; }
 .htxt p:last-child { margin-bottom: 0; }

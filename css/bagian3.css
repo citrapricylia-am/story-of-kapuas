@@ -16,7 +16,7 @@ body.b3 {
   font-family: var(--sans);
   font-weight: 300;
   background: var(--cream);
-  overflow-x: hidden;
+  overflow: hidden;
   -webkit-font-smoothing: antialiased;
   color: var(--white);
 }
@@ -25,13 +25,19 @@ img { display: block; max-width: 100%; height: auto; }
 
 a { color: inherit; text-decoration: none; }
 
-/* ---------- Halaman 1 (BAB 6) — responsif ---------- */
+/* ---------- Halaman 1 (BAB 6) — deck mode, responsif ---------- */
 .page-hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 clamp(1.2rem, 4vw, 3.6rem) clamp(12px, 2vh, 16px);
+}
+/* deck mode overrides .page-hero (from bagian3-types.css) */
+.page-hero.is-active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
 }
 .page-hero__inner {
   width: 100%;
@@ -258,6 +264,17 @@ body.menu-open .menu__card { transform: translateY(0); }
 .navbtn:disabled { opacity: 0.35; cursor: default; }
 .navbtn--next { right: 7.1vw; }
 .navbtn--prev { right: calc(7.1vw + 58px); }
+.pagenum {
+  position: fixed;
+  bottom: 30px;
+  right: 7.1vw;
+  z-index: 50;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.15em;
+}
 
 @media (max-width: 640px) {
   .hdr { padding: 18px 1rem; }

@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/bagian3.css?v=21" />
-  <link rel="stylesheet" href="css/bagian3-types.css?v=21" />
+  <link rel="stylesheet" href="css/bagian3.css?v=22" />
+  <link rel="stylesheet" href="css/bagian3-types.css?v=22" />
 </head>
 <body class="b3">
   <header class="hdr">
@@ -72,19 +72,19 @@
     </figure>
   </section>
 
-  <!-- BAB 6 — Tipe C-MIRROR (gambar atas, teks bawah) -->
-  <section class="sec t-cm" id="bab6-s3">
-    <figure class="t-cm__img">
-      <img src="assets/images/bagian3/dokumentator-pohon.jpg" alt="Dokumentator pohon penjaga air di Kapuas Hulu" />
-      <div class="shade"></div>
-      <figcaption class="cap cap--right"><strong>Di daerah perbatasan, terdapat sosok yang mengabdikan hidupnya untuk mendokumentasikan setiap jenis pohon penjaga air</strong><em>Kredit Foto: Sintang</em></figcaption>
-    </figure>
-    <div class="t-cm__txt">
-      <div class="t-cm__txt-inner">
-        <p class="para">Di daerah perbatasan, terdapat sosok yang mengabdikan hidupnya untuk mendokumentasikan setiap jenis pohon penjaga air yang ada di wilayahnya agar pengetahuannya tidak hilang ditelan zaman. Ia mengajar anak-anak muda desa cara mengenali pohon yang mampu menyimpan air di akarnya dan pohon yang berfungsi menahan longsor di tebing sungai. Dengan buku catatan sederhana dan kamera tua, ia telah menginventory lebih dari seratus spesies pohon lokal yang sebagian besar belum terdokumentasi dalam literatur botani resmi. Warisan pengetahuannya menjadi basis kurikulum ekologi untuk sekolah-sekolah pinggir sungai.</p>
-        <p class="para">Selain menjaga hutan, kelompok ini juga aktif melakukan pembibitan mandiri untuk jenis-jenis pohon yang kian langka akibat eksploitasi berlebihan di masa lalu. Mereka menyediakan bibit pohon ulin dan tengkawang secara gratis bagi siapa pun yang ingin menghijaukan kembali tebing sungai di sepanjang aliran Kapuas. Kebun bibit komunal ini dikelola dengan sistem gotong royong yang melibatkan ibu-ibu, pemuda, dan tetua adat secara serentak. Mereka percaya bahwa setiap bibit yang ditanam adalah amanah bagi generasi yang akan datang.</p>
+  <!-- BAB 6 — Tipe B-MIRROR (gambar kiri, teks kanan) -->
+  <section class="sec t-bm" id="bab6-s3">
+    <div class="t-b__txt">
+      <div class="t-b__txt-inner">
+        <p class="para">Di daerah perbatasan, terdapat sosok yang mengabdikan hidupnya untuk mendokumentasikan setiap jenis pohon penjaga air yang ada di wilayahnya agar pengetahuannya tidak hilang ditelan zaman. Ia mengajar anak-anak muda desa cara mengenali pohon yang mampu menyimpan air di akarnya dan pohon yang berfungsi sebagai pemecah arus saat banjir bandang tiba. Literasi botani yang ia tanamkan telah mencetak generasi baru penjaga hutan yang memahami nilai ilmiah di balik mitos-mitos lokal tentang hutan lindung. Pengetahuan ini menjadi benteng intelektual bagi warga desa dalam menghadapi narasi pembangunan yang sering kali meremehkan pentingnya keragaman hayati hutan primer.</p>
+        <p class="para">Selain menjaga hutan, kelompok ini juga aktif melakukan pembibitan mandiri untuk jenis-jenis pohon yang kian langka akibat eksploitasi berlebihan di masa lalu. Mereka menyediakan bibit pohon ulin dan tengkawang secara gratis bagi siapa pun yang ingin menghijaukan kembali tebing sungai di sepanjang aliran Kapuas. Dengan mendistribusikan bibit-bibit ini, mereka sedang menyebarkan "virus kebaikan" yang mendorong partisipasi kolektif dalam restorasi ekosistem riparian secara luas. Upaya pembibitan ini adalah bentuk investasi masa depan yang akan memastikan fungsi hidrologis DAS Kapuas tetap terjaga bagi generasi-generasi mendatang.</p>
       </div>
     </div>
+    <figure class="t-b__img">
+      <img src="assets/images/bagian3/pelatih-panjat-tebing.jpg" alt="Seorang Pelatih Panjat Tebing di Kapuas Hulu yang Mengkritik Kerusakan Lingkungan melalui Musik bernama Yedi Asmanci" />
+      <div class="shade"></div>
+      <figcaption class="cap cap--left"><strong>Seorang Pelatih Panjat Tebing di Kapuas Hulu yang Mengkritik Kerusakan Lingkungan melalui Musik bernama Yedi Asmanci</strong><em>Kredit Foto: Aldi Khatami</em></figcaption>
+    </figure>
   </section>
 
   <!-- BAB 6 — Tipe B-MIRROR (gambar kiri, teks kanan) -->
@@ -390,8 +390,9 @@
     <figcaption class="cap cap--right"><strong>Aktivitas Kepala Dusun Rentap Selatan, Desa Ensaid Panjang, Di Tempat Penyimpanan Beras</strong><em>Kredit Foto: Sintang</em></figcaption>
   </section>
 
-  <button class="navbtn navbtn--prev" id="prev" aria-label="Bagian sebelumnya">&#8249;</button>
-  <button class="navbtn navbtn--next" id="next" aria-label="Bagian berikutnya">&#8250;</button>
+  <button class="navbtn navbtn--prev" id="prev" aria-label="Halaman sebelumnya">&#8249;</button>
+  <button class="navbtn navbtn--next" id="next" aria-label="Halaman berikutnya">&#8250;</button>
+  <span class="pagenum" id="pagenum"></span>
 
   <script>
     (function () {
@@ -419,72 +420,107 @@
           e.preventDefault();
           closeMenu();
           var id = a.getAttribute('href').slice(1);
-          var target = document.getElementById(id);
-          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          goToSection(id);
         });
       });
       document.querySelectorAll('[data-home]').forEach(function (a) {
         a.addEventListener('click', function (e) {
           e.preventDefault();
           closeMenu();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          goToSection(0);
         });
       });
 
-      /* === Navigation: prev/next between BAB sections === */
-      var sections = Array.from(document.querySelectorAll('section[id^="bab"]'));
+      /* === DECK MODE: 1 slide per layar, transisi fade === */
+      var allSlides = Array.from(document.querySelectorAll('section.sec, section.page-hero'));
       var prevBtn = document.getElementById('prev');
       var nextBtn = document.getElementById('next');
+      var pagenum = document.getElementById('pagenum');
       var currentIdx = 0;
 
-      function scrollToSection(idx) {
-        if (idx < 0 || idx >= sections.length) return;
-        currentIdx = idx;
-        sections[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
-        updateNavButtons();
+      /* Set first slide active */
+      if (allSlides.length > 0) {
+        allSlides[0].classList.add('is-active');
       }
 
-      function updateNavButtons() {
+      function goToSection(idx) {
+        if (typeof idx === 'string') {
+          var el = document.getElementById(idx);
+          if (el) {
+            var i = allSlides.indexOf(el);
+            if (i >= 0) idx = i;
+          }
+        }
+        idx = parseInt(idx, 10);
+        if (isNaN(idx) || idx < 0 || idx >= allSlides.length) return;
+
+        allSlides[currentIdx].classList.remove('is-active');
+        currentIdx = idx;
+        allSlides[currentIdx].classList.add('is-active');
+        updateNav();
+      }
+
+      function updateNav() {
         prevBtn.style.opacity = currentIdx > 0 ? '1' : '0.35';
         prevBtn.style.pointerEvents = currentIdx > 0 ? 'auto' : 'none';
-        nextBtn.style.opacity = currentIdx < sections.length - 1 ? '1' : '0.35';
-        nextBtn.style.pointerEvents = currentIdx < sections.length - 1 ? 'auto' : 'none';
+        nextBtn.style.opacity = currentIdx < allSlides.length - 1 ? '1' : '0.35';
+        nextBtn.style.pointerEvents = currentIdx < allSlides.length - 1 ? 'auto' : 'none';
+        if (pagenum) pagenum.textContent = (currentIdx + 1) + ' / ' + allSlides.length;
       }
 
-      prevBtn.addEventListener('click', function () { scrollToSection(currentIdx - 1); });
-      nextBtn.addEventListener('click', function () { scrollToSection(currentIdx + 1); });
+      prevBtn.addEventListener('click', function () { goToSection(currentIdx - 1); });
+      nextBtn.addEventListener('click', function () { goToSection(currentIdx + 1); });
 
       /* Keyboard navigation */
       document.addEventListener('keydown', function (e) {
+        if (document.body.classList.contains('menu-open')) return;
         if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
           e.preventDefault();
-          scrollToSection(currentIdx - 1);
+          goToSection(currentIdx - 1);
         } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
           e.preventDefault();
-          scrollToSection(currentIdx + 1);
+          goToSection(currentIdx + 1);
         }
       });
 
-      /* Track which section is in view */
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting && entry.target.id.startsWith('bab')) {
-            var idx = sections.indexOf(entry.target);
-            if (idx >= 0) {
-              currentIdx = idx;
-              updateNavButtons();
-            }
+      /* Touch swipe for mobile */
+      var touchStartX = 0;
+      var touchEndX = 0;
+      document.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+      document.addEventListener('touchend', function (e) {
+        touchEndX = e.changedTouches[0].screenX;
+        var diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) {
+            goToSection(currentIdx + 1);
+          } else {
+            goToSection(currentIdx - 1);
           }
-        });
-      }, { threshold: 0.3 });
+        }
+      });
 
-      sections.forEach(function (s) { observer.observe(s); });
-      updateNavButtons();
+      /* Deep link support */
+      if (location.hash) {
+        var hashId = location.hash.slice(1);
+        var el = document.getElementById(hashId);
+        if (el) {
+          var i = allSlides.indexOf(el);
+          if (i >= 0) {
+            allSlides[0].classList.remove('is-active');
+            currentIdx = i;
+            allSlides[currentIdx].classList.add('is-active');
+          }
+        }
+      }
 
-      /* === BAB 6 fitHero (keep existing behavior) === */
+      updateNav();
+
+      /* === BAB 6 fitHero (keep existing behavior for first slide) === */
       function fitHero() {
-        var hero = document.querySelector('.page-hero');
-        var inner = document.querySelector('.page-hero__inner');
+        var hero = document.querySelector('.page-hero.is-active') || document.querySelector('.page-hero');
+        var inner = hero ? hero.querySelector('.page-hero__inner') : null;
         var hdr = document.querySelector('.hdr');
         if (!hero || !inner) return;
         if (window.innerWidth <= 768) {

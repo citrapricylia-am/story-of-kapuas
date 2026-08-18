@@ -14,15 +14,41 @@
 .hdr--photo .hdr__burger span { background: #fff; }
 .hdr--photo .hdr__part { color: #fff; }
 
-/* ---------- Struktur section tipe ---------- */
+/* ---------- Struktur section tipe (deck mode) ---------- */
 .sec {
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   background: var(--cream);
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.sec.is-active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+/* page-hero also deck mode */
+.page-hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.page-hero.is-active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
 }
 
 .kicker {

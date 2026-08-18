@@ -16,17 +16,101 @@ body.b3 {
   font-family: var(--sans);
   font-weight: 300;
   background: var(--cream);
-  overflow: hidden;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   color: var(--white);
 }
 
 img { display: block; max-width: 100%; }
 
+/* ---------- Halaman 1 (BAB 6) — responsif, di luar deck ---------- */
+.page-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(80px, 12vh, 128px) clamp(16px, 4vw, 48px) clamp(48px, 8vh, 80px);
+}
+.page-hero__inner {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+.hkicker {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(14px, 1.5vw, 18px);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+}
+.htitle {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(32px, 4.6vw, 56px);
+  line-height: 1.18;
+  color: var(--white);
+  margin-top: 10px;
+  max-width: 18ch;
+}
+.page-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "fig-a txt-a"
+    "txt-b fig-b";
+  gap: clamp(20px, 3vw, 44px);
+  align-items: center;
+  margin-top: clamp(28px, 4vw, 56px);
+}
+.hfig--a { grid-area: fig-a; }
+.htxt--a { grid-area: txt-a; }
+.htxt--b { grid-area: txt-b; }
+.hfig--b { grid-area: fig-b; }
+.hfig img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+}
+.hcap {
+  margin-top: 10px;
+  font-size: clamp(11px, 1.1vw, 13px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.82);
+}
+.hcap strong {
+  display: block;
+  font-weight: 500;
+  font-size: clamp(12px, 1.2vw, 14px);
+  color: var(--white);
+}
+.hcap span {
+  display: block;
+  font-style: italic;
+  opacity: 0.75;
+}
+.htxt {
+  font-size: clamp(15px, 1.35vw, 18px);
+  line-height: 1.75;
+}
+.htxt p { margin-bottom: 1.25em; }
+.htxt p:last-child { margin-bottom: 0; }
+
+@media (max-width: 768px) {
+  .page-hero { padding-top: clamp(72px, 10vh, 96px); align-items: flex-start; }
+  .page-hero__grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: "fig-a" "txt-a" "txt-b" "fig-b";
+  }
+}
+
 /* ---------- Stage (1440x1024 scaled to fit) ---------- */
 .stage {
-  position: fixed;
-  inset: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;

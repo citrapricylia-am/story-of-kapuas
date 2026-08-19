@@ -314,13 +314,30 @@ function select(id) {
   }
 
   if (natureSoundsBtn) {
+    var kapuasAudio = null;
+    try {
+      kapuasAudio = new Audio("assets/audio/sape-kalimantan.mp3");
+      kapuasAudio.loop = true;
+      kapuasAudio.volume = 0.65;
+      kapuasAudio.preload = "none";
+    } catch (e) {
+      kapuasAudio = null;
+    }
     natureSoundsBtn.addEventListener("click", function () {
+      if (!kapuasAudio) return;
       var enabled = natureSoundsBtn.getAttribute("aria-pressed") === "true";
       natureSoundsBtn.setAttribute("aria-pressed", String(!enabled));
       natureSoundsBtn.setAttribute(
         "aria-label",
-        enabled ? "Nyalakan suara alam" : "Matikan suara alam"
+        enabled ? "Putar musik instrumental Kalimantan" : "Hentikan musik instrumental Kalimantan"
       );
+      if (enabled) {
+        kapuasAudio.pause();
+      } else {
+        kapuasAudio.play().catch(function () {
+          natureSoundsBtn.setAttribute("aria-pressed", "false");
+        });
+      }
     });
   }
 

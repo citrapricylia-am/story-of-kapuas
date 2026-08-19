@@ -204,7 +204,7 @@
 
 /* ============ TIPE C-MIRROR — stack: gambar atas, teks bawah (gold) ============ */
 .t-cm__img {
-  flex: 0 0 58vh;
+  flex: 0 0 68vh;
   position: relative;
   margin: 0;
 }
@@ -214,6 +214,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
 }
 .t-cm__img .shade {
   position: absolute;

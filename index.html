@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" />
-  <link rel="stylesheet" href="css/style.css?v=journey-1" />
+  <link rel="stylesheet" href="css/style.css?v=nav-i18n-1" />
 </head>
 <body>
   <main class="page">
@@ -32,9 +32,9 @@
 
       <div class="hero-content" data-parallax-hero="2">
         <h1 id="hero-title" class="hero-title animate-fade-up" style="--animation-delay: 0.15s">
-          Kapuas: Menyusuri Narasi<br />
-          di Sungai Terpanjang<br />
-          Indonesia
+          <span data-i18n="hero.l1">Kapuas: Menyusuri Narasi</span><br />
+          <span data-i18n="hero.l2">di Sungai Terpanjang</span><br />
+          <span data-i18n="hero.l3">Indonesia</span>
         </h1>
       </div>
 
@@ -46,7 +46,7 @@
         aria-label="Mulai telusuri Sungai Kapuas"
         data-parallax-hero="3"
       >
-        <span class="explore-btn__label">Mulai Telusuri</span>
+        <span class="explore-btn__label" data-i18n="hero.explore">Mulai Telusuri</span>
         <svg class="explore-btn__icon" viewBox="0 0 12 8" fill="none" aria-hidden="true">
           <path d="M0.75 0.75L6 6.25L11.25 0.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
@@ -70,7 +70,9 @@
           </svg>
           <span class="nav-sounds__label">NATURE SOUNDS</span>
         </button>
-        <button type="button" id="menu-btn" class="nav-menu" aria-label="Buka menu navigasi">
+        <button type="button" id="lang-btn" class="nav-tool" aria-label="Ganti bahasa ke English" aria-pressed="false">EN</button>
+        <button type="button" id="a11y-btn" class="nav-tool nav-tool--a11y" aria-label="Pengaturan aksesibilitas" aria-expanded="false">Aa</button>
+        <button type="button" id="menu-btn" class="nav-menu" aria-label="Buka menu navigasi" aria-expanded="false">
           <svg viewBox="0 0 18 12" fill="none" aria-hidden="true">
             <path d="M0 1H18M0 6H18M0 11H18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
           </svg>
@@ -92,9 +94,9 @@
           </div>
 
           <div class="map-layer map-layer--heading">
-            <span class="map-eyebrow"><span class="map-eyebrow__line" aria-hidden="true"></span>LOKASI 3 KABUPATEN</span>
-            <h2 id="map-title" class="map-title">Pilih Destinasi</h2>
-            <p class="map-sub">Telusuri urat emas Sungai Kapuas — pilih sebuah kabupaten untuk
+            <span class="map-eyebrow"><span class="map-eyebrow__line" aria-hidden="true"></span><span data-i18n="map.eyebrow">LOKASI 3 KABUPATEN</span></span>
+            <h2 id="map-title" class="map-title" data-i18n="map.title">Pilih Destinasi</h2>
+            <p class="map-sub" data-i18n="map.sub">Telusuri urat emas Sungai Kapuas — pilih sebuah kabupaten untuk
               mengungkap rahasia hulu, warisan, dan biodiversitasnya.</p>
           </div>
 
@@ -103,52 +105,85 @@
       </div>
 
       <div class="map-content">
-        <p class="map-content__kicker">BERIKUTNYA</p>
-        <h3 class="map-content__title">Perjalanan di Hulu Baru Saja Dimulai</h3>
-        <p class="map-content__desc">Dari muara ke hulu — narasi Sungai Kapuas terus mengalir.</p>
+        <p class="map-content__kicker" data-i18n="journey.kicker">BERIKUTNYA</p>
+        <h3 class="map-content__title" data-i18n="journey.title">Perjalanan di Hulu Baru Saja Dimulai</h3>
+        <p class="map-content__desc" data-i18n="journey.desc">Dari muara ke hulu — narasi Sungai Kapuas terus mengalir.</p>
 
         <div class="journey-grid" id="journey">
           <a class="journey-card" href="#journey" data-bagian="1">
             <span class="journey-card__media" style="--img: url(../assets/images/bagian3/mangrove-pesisir.jpg)" aria-hidden="true"></span>
             <span class="journey-card__num">01</span>
-            <span class="journey-card__label">Bagian 1</span>
-            <span class="journey-card__sub">Muara &amp; Pesisir</span>
+            <span class="journey-card__label" data-i18n="journey.part" data-i18n-arg="1">Bagian 1</span>
+            <span class="journey-card__sub" data-i18n="journey.s1">Muara &amp; Pesisir</span>
             <span class="journey-card__arrow" aria-hidden="true"></span>
           </a>
           <a class="journey-card" href="#journey" data-bagian="2">
             <span class="journey-card__media" style="--img: url(../assets/images/bagian3/pasar-masuka.jpg)" aria-hidden="true"></span>
             <span class="journey-card__num">02</span>
-            <span class="journey-card__label">Bagian 2</span>
-            <span class="journey-card__sub">Denyut Sungai &amp; Pasar</span>
+            <span class="journey-card__label" data-i18n="journey.part" data-i18n-arg="2">Bagian 2</span>
+            <span class="journey-card__sub" data-i18n="journey.s2">Denyut Sungai &amp; Pasar</span>
             <span class="journey-card__arrow" aria-hidden="true"></span>
           </a>
           <a class="journey-card" href="#journey" data-bagian="3">
             <span class="journey-card__media" style="--img: url(../assets/images/bagian3/tebing-sungai.jpg)" aria-hidden="true"></span>
             <span class="journey-card__num">03</span>
-            <span class="journey-card__label">Bagian 3</span>
-            <span class="journey-card__sub">Tebing &amp; Hulu</span>
+            <span class="journey-card__label" data-i18n="journey.part" data-i18n-arg="3">Bagian 3</span>
+            <span class="journey-card__sub" data-i18n="journey.s3">Tebing &amp; Hulu</span>
             <span class="journey-card__arrow" aria-hidden="true"></span>
           </a>
           <a class="journey-card" href="#journey" data-bagian="4">
             <span class="journey-card__media" style="--img: url(../assets/images/bagian3/tradisi-sungai.jpg)" aria-hidden="true"></span>
             <span class="journey-card__num">04</span>
-            <span class="journey-card__label">Bagian 4</span>
-            <span class="journey-card__sub">Masyarakat &amp; Tradisi</span>
+            <span class="journey-card__label" data-i18n="journey.part" data-i18n-arg="4">Bagian 4</span>
+            <span class="journey-card__sub" data-i18n="journey.s4">Masyarakat &amp; Tradisi</span>
             <span class="journey-card__arrow" aria-hidden="true"></span>
           </a>
           <a class="journey-card" href="#journey" data-bagian="5">
             <span class="journey-card__media" style="--img: url(../assets/images/bagian3/anak-sungai.jpg)" aria-hidden="true"></span>
             <span class="journey-card__num">05</span>
-            <span class="journey-card__label">Bagian 5</span>
-            <span class="journey-card__sub">Harapan &amp; Masa Depan</span>
+            <span class="journey-card__label" data-i18n="journey.part" data-i18n-arg="5">Bagian 5</span>
+            <span class="journey-card__sub" data-i18n="journey.s5">Harapan &amp; Masa Depan</span>
             <span class="journey-card__arrow" aria-hidden="true"></span>
           </a>
         </div>
       </div>
     </section>
 
+    <nav class="home-menu" id="home-menu" aria-label="Navigasi situs">
+      <div class="home-menu__card">
+        <p class="home-menu__label" data-i18n="menu.daftar">DAFTAR ISI</p>
+        <a class="home-menu__item home-menu__item--active" href="index.html" data-i18n="menu.home">Beranda</a>
+        <a class="home-menu__item" href="#peta" data-i18n="menu.map">Peta Interaktif</a>
+        <a class="home-menu__item" href="#journey" data-i18n="menu.journey">Perjalanan di Hulu</a>
+        <div class="home-menu__divider"></div>
+        <a class="home-menu__item home-menu__item--dim" href="#" aria-disabled="true" data-i18n="menu.b1">Bagian I : Arteri dan Jejak Peradaban</a>
+        <a class="home-menu__item home-menu__item--dim" href="#" aria-disabled="true" data-i18n="menu.b2">Bagian II</a>
+        <a class="home-menu__item" href="bagian3.html" data-i18n="menu.b3">Bagian III : Galeri 90 Penyimpang Positif</a>
+        <a class="home-menu__item home-menu__item--dim" href="#" aria-disabled="true" data-i18n="menu.b4">Bagian IV</a>
+        <a class="home-menu__item home-menu__item--dim" href="#" aria-disabled="true" data-i18n="menu.b5">Bagian V</a>
+      </div>
+    </nav>
+
+    <div class="a11y-panel" id="a11y-panel" aria-label="Pengaturan aksesibilitas">
+      <div class="a11y-panel__card">
+        <p class="a11y-panel__label" data-i18n="a11y.title">AKSESIBILITAS</p>
+        <button type="button" class="a11y-panel__opt" id="a11y-bigtext" aria-pressed="false">
+          <span class="a11y-panel__icon">A+</span>
+          <span class="a11y-panel__name" data-i18n="a11y.big">Teks Lebih Besar</span>
+        </button>
+        <button type="button" class="a11y-panel__opt" id="a11y-contrast" aria-pressed="false">
+          <span class="a11y-panel__icon">◐</span>
+          <span class="a11y-panel__name" data-i18n="a11y.contrast">Kontras Tinggi</span>
+        </button>
+        <button type="button" class="a11y-panel__opt" id="a11y-nomotion" aria-pressed="false">
+          <span class="a11y-panel__icon">▮▮</span>
+          <span class="a11y-panel__name" data-i18n="a11y.nomotion">Hentikan Animasi</span>
+        </button>
+      </div>
+    </div>
+
     <footer class="site-footer">
-      <p>STORY OF KAPUAS — MENYUSURI NARASI SUNGAI TERPANJANG INDONESIA</p>
+      <p data-i18n="footer.line">STORY OF KAPUAS — MENYUSURI NARASI SUNGAI TERPANJANG INDONESIA</p>
       <span>&copy; 2060</span>
     </footer>
   </main>
@@ -157,6 +192,6 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
-  <script src="js/main.js?v=motion-map-3"></script>
+  <script src="js/main.js?v=nav-i18n-1"></script>
 </body>
 </html>

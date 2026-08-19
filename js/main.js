@@ -41,6 +41,10 @@
   var exploreBtn = document.getElementById("explore-btn");
   var natureSoundsBtn = document.getElementById("nature-sounds-btn");
   var menuBtn = document.getElementById("menu-btn");
+  var langBtn = document.getElementById("lang-btn");
+  var a11yBtn = document.getElementById("a11y-btn");
+  var a11yPanel = document.getElementById("a11y-panel");
+  var homeMenu = document.getElementById("home-menu");
 
   var lenis = null;
   var map = null;
@@ -322,10 +326,174 @@ function select(id) {
 
   if (menuBtn) {
     menuBtn.addEventListener("click", function () {
-      var open = menuBtn.getAttribute("aria-expanded") === "true";
-      menuBtn.setAttribute("aria-expanded", String(!open));
+      var open = document.body.classList.toggle("menu-open");
+      menuBtn.setAttribute("aria-expanded", String(open));
+      menuBtn.setAttribute("aria-label", open ? "Tutup menu navigasi" : "Buka menu navigasi");
+      if (open && a11yPanel) closeA11y();
     });
   }
+
+  if (homeMenu) {
+    homeMenu.addEventListener("click", function (e) {
+      if (e.target === homeMenu) {
+        document.body.classList.remove("menu-open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.setAttribute("aria-label", "Buka menu navigasi");
+      }
+    });
+    homeMenu.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        document.body.classList.remove("menu-open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.focus();
+      }
+    });
+  }
+
+  /* ================= Bahasa (ID <-> EN) ================= */
+
+  var I18N = {
+    en: {
+      "hero.l1": "Kapuas: Tracing the Narrative",
+      "hero.l2": "on Indonesia's Longest",
+      "hero.l3": "River",
+      "hero.explore": "Start Exploring",
+      "map.eyebrow": "3 REGENCIES",
+      "map.title": "Choose a Destination",
+      "map.sub": "Trace the golden veins of the Kapuas — choose a regency to uncover the secrets of its headwaters, heritage, and biodiversity.",
+      "journey.kicker": "NEXT",
+      "journey.title": "The Journey Upstream Has Only Just Begun",
+      "journey.desc": "From the estuary to the headwaters — the Kapuas narrative keeps flowing.",
+      "journey.part": "Part {n}",
+      "journey.s1": "Estuary & Coast",
+      "journey.s2": "River Pulse & Markets",
+      "journey.s3": "Cliffs & Headwaters",
+      "journey.s4": "People & Traditions",
+      "journey.s5": "Hope & the Future",
+      "menu.daftar": "TABLE OF CONTENTS",
+      "menu.home": "Home",
+      "menu.map": "Interactive Map",
+      "menu.journey": "Journey Upstream",
+      "menu.b1": "Part I : Arteries and Traces of Civilization",
+      "menu.b2": "Part II",
+      "menu.b3": "Part III : Gallery of 90 Positive Deviants",
+      "menu.b4": "Part IV",
+      "menu.b5": "Part V",
+      "a11y.title": "ACCESSIBILITY",
+      "a11y.big": "Larger Text",
+      "a11y.contrast": "High Contrast",
+      "a11y.nomotion": "Stop Animations",
+      "footer.line": "STORY OF KAPUAS — TRACING THE NARRATIVE OF INDONESIA'S LONGEST RIVER"
+    }
+  };
+
+  var currentLang = "id";
+
+  function applyLang(lang) {
+    var dict = I18N[lang];
+    document.documentElement.lang = lang;
+    document.documentElement.setAttribute("xml:lang", lang);
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      if (!el.dataset.i18nId) el.dataset.i18nId = el.textContent;
+      if (lang === "id") {
+        el.textContent = el.dataset.i18nId;
+        return;
+      }
+      var key = el.getAttribute("data-i18n");
+      var val = dict ? dict[key] : null;
+      if (!val) return;
+      var arg = el.getAttribute("data-i18n-arg");
+      if (arg) val = val.replace("{n}", arg);
+      el.textContent = val;
+    });
+    if (langBtn) {
+      var next = lang === "id" ? "en" : "id";
+      langBtn.textContent = next.toUpperCase();
+      langBtn.setAttribute("aria-pressed", String(lang === "en"));
+      langBtn.setAttribute("aria-label", lang === "id" ? "Ganti bahasa ke English" : "Switch language to Bahasa Indonesia");
+    }
+    try {
+      localStorage.setItem("kapuas-lang", lang);
+    } catch (e) {}
+  }
+
+  if (langBtn) {
+    langBtn.addEventListener("click", function () {
+      currentLang = currentLang === "id" ? "en" : "id";
+      applyLang(currentLang);
+    });
+    var savedLang = null;
+    try {
+      savedLang = localStorage.getItem("kapuas-lang");
+    } catch (e) {}
+    if (savedLang === "en") {
+      currentLang = "en";
+      applyLang("en");
+    }
+  }
+
+  /* ================= Aksesibilitas ================= */
+
+  function closeA11y() {
+    document.body.classList.remove("a11y-open");
+    a11yBtn.setAttribute("aria-expanded", "false");
+  }
+
+  if (a11yBtn) {
+    a11yBtn.addEventListener("click", function () {
+      var open = document.body.classList.toggle("a11y-open");
+      a11yBtn.setAttribute("aria-expanded", String(open));
+      if (open && homeMenu) {
+        document.body.classList.remove("menu-open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
+  if (a11yPanel) {
+    a11yPanel.addEventListener("click", function (e) {
+      if (e.target === a11yPanel) closeA11y();
+    });
+    a11yPanel.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeA11y();
+    });
+  }
+
+  var A11Y_OPTS = [
+    { id: "a11y-bigtext", cls: "a11y-bigtext" },
+    { id: "a11y-contrast", cls: "a11y-highcontrast" },
+    { id: "a11y-nomotion", cls: "a11y-nomotion" }
+  ];
+
+  function initA11y() {
+    var saved = null;
+    try {
+      saved = JSON.parse(localStorage.getItem("kapuas-a11y") || "{}");
+    } catch (e) {}
+    A11Y_OPTS.forEach(function (opt) {
+      var btn = document.getElementById(opt.id);
+      if (!btn) return;
+      var on = !!(saved && saved[opt.id]);
+      if (on) {
+        document.body.classList.add(opt.cls);
+        btn.setAttribute("aria-pressed", "true");
+      }
+      btn.addEventListener("click", function () {
+        var active = document.body.classList.toggle(opt.cls);
+        btn.setAttribute("aria-pressed", String(active));
+        var store = {};
+        try {
+          store = JSON.parse(localStorage.getItem("kapuas-a11y") || "{}");
+        } catch (e) {}
+        store[opt.id] = active;
+        try {
+          localStorage.setItem("kapuas-a11y", JSON.stringify(store));
+        } catch (e) {}
+      });
+    });
+  }
+
+  initA11y();
 
   /* ================= Init ================= */
 

@@ -68,6 +68,11 @@
   margin-top: clamp(8px, 1.2vh, 16px);
   max-width: 22ch;
 }
+.title--xl {
+  font-size: clamp(32px, 4.2vw, 60px);
+  line-height: 1.1;
+  max-width: none;
+}
 .para {
   font-family: var(--sans);
   font-weight: 300;
@@ -84,7 +89,11 @@
   font-size: clamp(16px, 1.8vw, 24px);
   line-height: 1.4;
   color: var(--white);
+  margin: 22px 0 0;
+  padding-left: 18px;
+  border-left: 3px solid var(--accent);
 }
+.quote p { margin: 0; }
 .quote__src {
   display: block;
   font-family: var(--sans);
@@ -95,6 +104,12 @@
   margin-top: 12px;
   color: rgba(255, 255, 255, 0.92);
 }
+.t-b__txt-inner .quote {
+  color: var(--ink);
+  font-size: clamp(14px, 1.35vw, 18px);
+  padding-left: 14px;
+}
+.t-b__txt-inner .quote__src { color: rgba(6, 27, 14, 0.72); }
 
 /* Caption foto (overlay) */
 .cap {
@@ -248,6 +263,15 @@
   text-align: left;
 }
 .t-e__txt .title { max-width: none; }
+.t-e__txt--cols {
+  max-width: 1180px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(32px, 4vw, 64px);
+  align-items: start;
+}
+.t-e__col .para { margin-top: 0; }
+.t-e__col .quote { font-size: clamp(14px, 1.5vw, 20px); }
 
 /* ============ Mobile (<768px): stack + scroll normal ============ */
 @media (max-width: 767px) {
@@ -279,6 +303,7 @@
     padding: clamp(32px, 8vw, 48px) 16px;
     background: var(--cream);
   }
+  .t-e__txt--cols { grid-template-columns: 1fr; row-gap: 20px; }
   .t-e__txt .para { color: rgba(255, 255, 255, 0.95); }
   .cap--right { right: 12px; left: 12px; text-align: left; }
   .cap--left { left: 12px; right: 12px; }

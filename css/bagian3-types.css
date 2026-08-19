@@ -180,7 +180,7 @@
   display: flex;
   align-items: center;
 }
-.t-c__txt-inner { width: 100%; max-width: 1240px; margin-inline: auto; }
+.t-c__txt-inner { width: 100%; max-width: none; margin-inline: 0; }
 .t-c__txt .title { max-width: none; }
 .t-c__txt .para { max-width: none; }
 .t-c__img {
@@ -235,7 +235,7 @@
   align-items: center;
   min-height: 0;
 }
-.t-cm__txt-inner { width: 100%; max-width: 1240px; margin-inline: auto; }
+.t-cm__txt-inner { width: 100%; max-width: none; margin-inline: 0; }
 .t-cm__txt .para { max-width: none; }
 
 /* ============ TIPE E — full-bleed background + teks overlay kiri ============ */

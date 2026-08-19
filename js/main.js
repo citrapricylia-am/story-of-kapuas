@@ -315,16 +315,15 @@ function select(id) {
 
   if (natureSoundsBtn) {
     var kapuasAudio = null;
-    try {
-      kapuasAudio = new Audio("assets/audio/sape-kalimantan.mp3");
-      kapuasAudio.loop = true;
-      kapuasAudio.volume = 0.65;
-      kapuasAudio.preload = "none";
-    } catch (e) {
-      kapuasAudio = null;
+    function ensureAudio() {
+      if (!kapuasAudio) {
+        kapuasAudio = new Audio("assets/audio/sape-kalimantan.mp3");
+        kapuasAudio.loop = true;
+        kapuasAudio.volume = 0.8;
+      }
+      return kapuasAudio;
     }
     natureSoundsBtn.addEventListener("click", function () {
-      if (!kapuasAudio) return;
       var enabled = natureSoundsBtn.getAttribute("aria-pressed") === "true";
       natureSoundsBtn.setAttribute("aria-pressed", String(!enabled));
       natureSoundsBtn.setAttribute(
@@ -332,10 +331,11 @@ function select(id) {
         enabled ? "Putar musik instrumental Kalimantan" : "Hentikan musik instrumental Kalimantan"
       );
       if (enabled) {
-        kapuasAudio.pause();
+        ensureAudio().pause();
       } else {
-        kapuasAudio.play().catch(function () {
+        ensureAudio().play().catch(function () {
           natureSoundsBtn.setAttribute("aria-pressed", "false");
+          natureSoundsBtn.setAttribute("aria-label", "Putar musik instrumental Kalimantan");
         });
       }
     });

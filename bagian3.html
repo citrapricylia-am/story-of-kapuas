@@ -112,20 +112,16 @@
       <figcaption class="cap cap--left"><strong>Aktivitas Warga Sanggau yang Sedang Bermain Permainan Tradisional yang Biasa Disebut Pangkak Gasing</strong><br><em>Kredit Foto: Parisa Ramadhan</em></figcaption>
     </figure>
   </section>
-  <section class="sec t-c" id="bab7" data-label="BAB 7 — Inovator Teknologi dan Sains Warga">
-    <div class="t-c__txt">
-      <div class="t-c__txt-inner">
-        <p class="kicker">BAB 7</p>
-        <h3 class="title">Inovator Teknologi dan Sains Warga</h3>
-        <p class="para">Kelompok kedua dari 90 sosok penyimpang positif terdiri dari anak-anak muda dan teknisi lokal yang menggunakan inovasi digital untuk menjawab tantangan krisis ekologi di Sungai Kapuas. Di tengah keterbatasan akses internet dan infrastruktur di pedalaman, mereka berhasil menciptakan perangkat sensor mandiri untuk memantau kualitas air secara real-time. Dengan memanfaatkan komponen elektronik murah dan sistem tenaga surya, inovasi ini memungkinkan warga desa mengetahui secara dini jika air sungai mereka tercemar merkuri. Transformasi dari nelayan tradisional menjadi &quot;Ilmuwan Warga&quot; (Citizen Scientists) ini adalah lompatan besar dalam manajemen lingkungan berbasis komunitas di era digital.</p>
-        <p class="para">Salah satu inovator di Sintang menciptakan aplikasi mobile sederhana yang memungkinkan warga melaporkan lokasi-lokasi aktivitas PETI yang masuk ke wilayah sensitif secara anonim. Laporan-laporan ini dikompilasi menjadi peta panas (heatmap) pencemaran yang kemudian dibagikan secara terbuka kepada publik dan aparat penegak hukum untuk ditindaklanjuti. Penggunaan data sebagai alat advokasi memberikan kekuatan baru bagi masyarakat riparian untuk melawan praktik perusakan lingkungan yang selama ini sering kali tertutup rapat. Keberanian digital ini menunjukkan bahwa transparansi adalah obat paling mujarab untuk menyembuhkan patologi ekologi yang telah kronis melanda wilayah koridor sungai.</p>
-      </div>
+  <section class="sec t-e" id="bab7" data-label="BAB 7 — Inovator Teknologi dan Sains Warga">
+    <img class="t-e__bg" src="assets/images/bagian3/inovator-sungai-baru.jpg" alt="Kondisi Salah Satu Anak Sungai Kapuas yang Berada di Sintang" />
+    <div class="t-e__shade"></div>
+    <div class="t-e__txt">
+      <p class="kicker">BAB 7</p>
+      <h3 class="title">Inovator Teknologi dan Sains Warga</h3>
+      <p class="para">Kelompok kedua dari 90 sosok penyimpang positif terdiri dari anak-anak muda dan teknisi lokal yang menggunakan inovasi digital untuk menjawab tantangan krisis ekologi di Sungai Kapuas. Di tengah keterbatasan akses internet dan infrastruktur di pedalaman, mereka berhasil menciptakan perangkat sensor mandiri untuk memantau kualitas air secara real-time. Dengan memanfaatkan komponen elektronik murah dan sistem tenaga surya, inovasi ini memungkinkan warga desa mengetahui secara dini jika air sungai mereka tercemar merkuri. Transformasi dari nelayan tradisional menjadi &quot;Ilmuwan Warga&quot; (Citizen Scientists) ini adalah lompatan besar dalam manajemen lingkungan berbasis komunitas di era digital.</p>
+      <p class="para">Salah satu inovator di Sintang menciptakan aplikasi mobile sederhana yang memungkinkan warga melaporkan lokasi-lokasi aktivitas PETI yang masuk ke wilayah sensitif secara anonim. Laporan-laporan ini dikompilasi menjadi peta panas (heatmap) pencemaran yang kemudian dibagikan secara terbuka kepada publik dan aparat penegak hukum untuk ditindaklanjuti. Penggunaan data sebagai alat advokasi memberikan kekuatan baru bagi masyarakat riparian untuk melawan praktik perusakan lingkungan yang selama ini sering kali tertutup rapat. Keberanian digital ini menunjukkan bahwa transparansi adalah obat paling mujarab untuk menyembuhkan patologi ekologi yang telah kronis melanda wilayah koridor sungai.</p>
     </div>
-    <figure class="t-c__img">
-      <img src="assets/images/bagian3/inovator-sungai-baru.jpg" alt="Kondisi Salah Satu Anak Sungai Kapuas yang Berada di Sintang" />
-      <div class="shade"></div>
-      <figcaption class="cap cap--left"><strong>Kondisi Salah Satu Anak Sungai Kapuas yang Berada di Sintang</strong><br><em>Kredit Foto: Sintang</em></figcaption>
-    </figure>
+    <figcaption class="cap cap--right"><strong>Kondisi Salah Satu Anak Sungai Kapuas yang Berada di Sintang</strong><br><em>Kredit Foto: Sintang</em></figcaption>
   </section>
   <section class="sec t-e" id="bab7-s2">
     <img class="t-e__bg" src="assets/images/bagian3/bank-sampah-baru.jpg" alt="Teknologi Tradisional Masyarakat Adat Dayak di Desa Ensaid Panjang untuk Mengolah Pulut Menjadi Tuak" />
@@ -542,13 +538,13 @@
       updateNav();
 
       function fitDeckContent() {
-        document.querySelectorAll('.t-e__txt--cols, .t-c__txt-inner, .t-cm__txt-inner, .t-b__txt-inner').forEach(function(el) {
+        document.querySelectorAll('.t-e__txt--cols, .t-c__txt-inner, .t-cm__txt-inner, .t-b__txt-inner, .t-e__txt:not(.t-e__txt--cols):not(.t-e__txt--diag)').forEach(function(el) {
           el.style.transform = '';
         });
         if (window.innerWidth <= 767) return;
         var activeSec = document.querySelector('.sec.is-active');
         if (!activeSec) return;
-        var candidateSelectors = ['.t-e__txt--cols', '.t-c__txt-inner', '.t-cm__txt-inner', '.t-b__txt-inner'];
+        var candidateSelectors = ['.t-e__txt--cols', '.t-c__txt-inner', '.t-cm__txt-inner', '.t-b__txt-inner', '.t-e__txt:not(.t-e__txt--cols):not(.t-e__txt--diag)'];
         var target = null;
         for (var i = 0; i < candidateSelectors.length; i++) {
           var found = activeSec.querySelector(candidateSelectors[i]);

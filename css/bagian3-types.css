@@ -307,6 +307,34 @@
 }
 .t-e__col .quote { font-size: clamp(14px, 1.5vw, 20px); }
 
+/* ============ TIPE E DIAG — 2 blok teks diagonal (kanan-atas + kiri-bawah) ============ */
+.t-e--diag .t-e__txt {
+  position: absolute;
+  inset: 0;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+.t-e__diag-bl {
+  position: absolute;
+  max-width: min(460px, 88%);
+  margin-top: 0;
+  hyphens: none;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7), 0 2px 16px rgba(0, 0, 0, 0.5);
+}
+.t-e__diag-bl--tr {
+  top: clamp(120px, 20vh, 200px);
+  right: clamp(24px, 5vw, 72px);
+}
+.t-e__diag-bl--bl {
+  bottom: clamp(100px, 13vh, 150px);
+  left: clamp(24px, 5vw, 72px);
+}
+.t-e__shade--diag {
+  background: linear-gradient(115deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.28) 45%, rgba(0, 0, 0, 0.52) 100%);
+}
+.t-e .cap--right { bottom: clamp(92px, 11vh, 132px); }
+
 /* ============ Mobile (<768px): stack + scroll normal ============ */
 @media (max-width: 767px) {
   .sec { min-height: 0; overflow: visible; }
@@ -339,6 +367,9 @@
   }
   .t-e__txt--cols { grid-template-columns: 1fr; row-gap: 20px; }
   .t-e__txt .para { color: rgba(255, 255, 255, 0.95); }
+  .t-e--diag .t-e__txt { position: static; padding: clamp(32px, 8vw, 48px) var(--content-padding-x); }
+  .t-e--diag .t-e__diag-bl { position: static; max-width: none; margin-top: 18px; }
+  .t-e--diag .t-e__diag-bl:first-child { margin-top: 0; }
   .cap--right { right: 12px; left: 12px; text-align: left; }
   .cap--left { left: 12px; right: 12px; }
 }

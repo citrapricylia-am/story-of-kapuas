@@ -175,8 +175,7 @@
 .t-c__txt {
   flex: 0 0 auto;
   background: var(--cream);
-  padding: clamp(48px, 8vh, 96px) var(--content-padding-x) clamp(28px, 4vh, 48px);
-  min-height: 52vh;
+  padding: clamp(40px, 6vh, 72px) var(--content-padding-x) clamp(32px, 5vh, 56px);
   display: flex;
   align-items: center;
 }
@@ -257,6 +256,22 @@
 .t-e__shade--bottom {
   background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent 55%);
 }
+.sec:has(.t-e__txt--cols) .t-e__shade {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.35) 40%,
+    rgba(0, 0, 0, 0.55) 100%
+  ), rgba(0, 0, 0, 0.25);
+}
+.t-e__shade--cols {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.35) 40%,
+    rgba(0, 0, 0, 0.55) 100%
+  ), rgba(0, 0, 0, 0.25);
+}
 .t-e__txt {
   position: relative;
   z-index: 2;
@@ -273,7 +288,7 @@
   column-gap: clamp(32px, 4vw, 64px);
   align-items: start;
 }
-.t-e__col .para { margin-top: 0; }
+.t-e__col .para { margin-top: 0; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7), 0 2px 16px rgba(0, 0, 0, 0.5); }
 .t-e__col .quote { font-size: clamp(14px, 1.5vw, 20px); }
 
 /* ============ Mobile (<768px): stack + scroll normal ============ */

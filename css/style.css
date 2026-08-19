@@ -763,6 +763,120 @@ svg {
   color: rgba(250, 250, 243, 0.66);
 }
 
+/* ---- Grid perjalanan 5 bagian (Bagian 1-5) ---- */
+.journey-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  width: min(1280px, 100%);
+  margin-top: 64px;
+}
+
+.journey-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: 3px;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px 18px;
+  text-align: left;
+  border: 1px solid rgba(250, 250, 243, 0.16);
+  transition: border-color 0.35s ease, transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.journey-card__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.05) 30%, rgba(0, 0, 0, 0.88) 100%),
+    var(--img) center / cover no-repeat;
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.journey-card:hover {
+  border-color: rgba(233, 193, 118, 0.75);
+  transform: translateY(-6px);
+}
+
+.journey-card:hover .journey-card__media {
+  transform: scale(1.07);
+}
+
+.journey-card__num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: rgba(250, 250, 243, 0.55);
+}
+
+.journey-card__label {
+  margin-top: 10px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 2.2px;
+  color: var(--gold);
+}
+
+.journey-card__sub {
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(16px, 1.4vw, 21px);
+  line-height: 1.2;
+  color: #fff;
+}
+
+.journey-card__arrow {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(250, 250, 243, 0.4);
+  background: rgba(6, 27, 14, 0.35);
+  transition: background 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+}
+
+.journey-card__arrow::before,
+.journey-card__arrow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: #fff;
+}
+
+.journey-card__arrow::before {
+  width: 9px;
+  height: 1.5px;
+  transform: translate(-50%, -50%);
+}
+
+.journey-card__arrow::after {
+  width: 1.5px;
+  height: 9px;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+}
+
+.journey-card:hover .journey-card__arrow {
+  background: var(--gold);
+  border-color: var(--gold);
+  transform: rotate(45deg);
+}
+
+.journey-card:hover .journey-card__arrow::before,
+.journey-card:hover .journey-card__arrow::after {
+  background: var(--green-deep);
+}
+
 /* Footer */
 .site-footer {
   display: flex;
@@ -800,6 +914,23 @@ svg {
   }
   .map-content {
     padding: 10vh var(--header-pad) 12vh;
+  }
+  .journey-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 44px;
+  }
+  .journey-card {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .journey-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .journey-card {
+    aspect-ratio: 4 / 5;
   }
 }
 

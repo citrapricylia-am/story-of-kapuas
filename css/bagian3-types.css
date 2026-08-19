@@ -290,15 +290,16 @@
   grid-template-columns: 1fr 1fr;
   column-gap: clamp(32px, 4vw, 64px);
   row-gap: clamp(16px, 2.5vh, 28px);
-  align-items: center;
+  align-items: start;
   width: 100%;
   padding-top: clamp(88px, 12vh, 116px);
   padding-bottom: clamp(24px, 4vh, 40px);
 }
 .t-e__col .para {
   font-size: clamp(12px, 0.95vw, 14px);
-  line-height: 1.52;
-  margin-top: 22px;
+  line-height: 1.55;
+  margin-top: 20px;
+  hyphens: none;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7), 0 2px 16px rgba(0, 0, 0, 0.5);
 }
 .t-e__col .para:first-child {

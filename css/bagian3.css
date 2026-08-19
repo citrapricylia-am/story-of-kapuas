@@ -6,6 +6,7 @@
   --white: #FFFFFF;
   --serif: "Playfair Display", Georgia, serif;
   --sans: "Montserrat", Helvetica, Arial, sans-serif;
+  --content-padding-x: clamp(1.2rem, 4vw, 3.6rem);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -141,7 +142,7 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   gap: 1.6rem;
-  padding: 26px clamp(1.2rem, 4vw, 3.6rem);
+  padding: 26px var(--content-padding-x);
   pointer-events: none;
 }
 .hdr a, .hdr button, .hdr span { pointer-events: auto; }
@@ -284,6 +285,7 @@ body.menu-open .menu__card { transform: translateY(0); }
   .menu__item { font-size: 14px; padding: 0.55rem 0.7rem; }
   .navbtn--next { right: 4vw; }
   .navbtn--prev { right: calc(4vw + 54px); }
+  :root { --content-padding-x: 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

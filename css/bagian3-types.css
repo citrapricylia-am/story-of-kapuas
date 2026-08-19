@@ -142,7 +142,7 @@
   display: flex;
   align-items: center;
   background: var(--cream);
-  padding: clamp(24px, 5vw, 88px);
+  padding: clamp(24px, 5vw, 88px) var(--content-padding-x);
 }
 .t-b__txt-inner { max-width: 560px; }
 .t-b__img {
@@ -175,7 +175,7 @@
 .t-c__txt {
   flex: 0 0 auto;
   background: var(--cream);
-  padding: clamp(48px, 8vh, 96px) clamp(24px, 6vw, 96px) clamp(28px, 4vh, 48px);
+  padding: clamp(48px, 8vh, 96px) var(--content-padding-x) clamp(28px, 4vh, 48px);
   min-height: 52vh;
   display: flex;
   align-items: center;
@@ -230,7 +230,7 @@
 .t-cm__txt {
   flex: 1 1 auto;
   background: var(--cream);
-  padding: clamp(40px, 7vh, 80px) clamp(24px, 6vw, 96px);
+  padding: clamp(40px, 7vh, 80px) var(--content-padding-x);
   display: flex;
   align-items: center;
   min-height: 0;
@@ -261,7 +261,7 @@
   position: relative;
   z-index: 2;
   max-width: 540px;
-  margin: auto clamp(24px, 6vw, 96px);
+  margin: auto var(--content-padding-x);
   padding-top: 88px;
   padding-bottom: 72px;
 }
@@ -303,7 +303,7 @@
     position: static;
     max-width: none;
     margin: 0;
-    padding: clamp(32px, 8vw, 48px) 16px;
+    padding: clamp(32px, 8vw, 48px) var(--content-padding-x);
     background: var(--cream);
   }
   .t-e__txt--cols { grid-template-columns: 1fr; row-gap: 20px; }

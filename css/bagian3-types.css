@@ -239,6 +239,9 @@
 
 /* ============ TIPE E — full-bleed background + teks overlay kiri ============ */
 .t-e { background: var(--ink); }
+.t-e:has(.t-e__txt--cols) {
+  justify-content: center;
+}
 .t-e__bg {
   position: absolute;
   inset: 0;
@@ -286,14 +289,21 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: clamp(32px, 4vw, 64px);
+  row-gap: clamp(16px, 2.5vh, 28px);
   align-items: center;
   width: 100%;
-  padding-top: 0;
-  padding-bottom: 0;
-  margin-top: auto;
-  margin-bottom: auto;
+  padding-top: clamp(88px, 12vh, 116px);
+  padding-bottom: clamp(24px, 4vh, 40px);
 }
-.t-e__col .para { margin-top: 0; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7), 0 2px 16px rgba(0, 0, 0, 0.5); }
+.t-e__col .para {
+  font-size: clamp(12px, 0.95vw, 14px);
+  line-height: 1.52;
+  margin-top: 14px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7), 0 2px 16px rgba(0, 0, 0, 0.5);
+}
+.t-e__col .para:first-child {
+  margin-top: 0;
+}
 .t-e__col .quote { font-size: clamp(14px, 1.5vw, 20px); }
 
 /* ============ Mobile (<768px): stack + scroll normal ============ */

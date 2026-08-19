@@ -80,6 +80,9 @@
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.95);
   text-align: justify;
+  text-justify: inter-word;
+  word-spacing: normal;
+  hyphens: auto;
   margin-top: 18px;
 }
 .quote {
@@ -261,7 +264,6 @@
   margin: auto clamp(24px, 6vw, 96px);
   padding-top: 88px;
   padding-bottom: 72px;
-  text-align: left;
 }
 .t-e__txt .title { max-width: none; }
 .t-e__txt--cols {

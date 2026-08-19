@@ -111,7 +111,7 @@
 }
 .t-b__txt-inner .quote__src { color: rgba(6, 27, 14, 0.72); }
 
-/* Caption foto (overlay) */
+/* Caption foto (overlay) — flat, no box/hover, teks gelap */
 .cap {
   position: absolute;
   z-index: 3;
@@ -119,15 +119,15 @@
   font-weight: 500;
   font-size: clamp(11px, 0.95vw, 14px);
   line-height: 1.5;
-  color: #fff;
+  color: #1a1a1a;
   max-width: min(560px, 84%);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55), 0 2px 12px rgba(0, 0, 0, 0.4);
-  padding: 14px 18px;
-  border-radius: 10px;
-  background: linear-gradient(to top, rgba(6, 27, 14, 0.62), rgba(6, 27, 14, 0.18) 70%, transparent);
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.7);
+  padding: 0;
+  border-radius: 0;
+  background: none;
 }
 .cap strong { font-weight: 600; }
-.cap em { font-size: 0.86em; opacity: 0.9; }
+.cap em { font-size: 0.86em; opacity: 0.8; }
 .cap--left { left: clamp(20px, 3vw, 48px); bottom: clamp(18px, 4vh, 48px); text-align: left; }
 .cap--right { right: clamp(20px, 3vw, 48px); bottom: clamp(18px, 4vh, 48px); text-align: right; }
 .cap--full { left: 0; right: 0; bottom: 0; max-width: none; border-radius: 0; }

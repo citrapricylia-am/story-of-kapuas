@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/bagian3.css?v=39" />
-  <link rel="stylesheet" href="css/bagian3-types.css?v=39" />
+  <link rel="stylesheet" href="css/bagian3.css?v=40" />
+  <link rel="stylesheet" href="css/bagian3-types.css?v=40" />
 </head>
 <body class="b3">
   <header class="hdr">
@@ -513,6 +513,7 @@
         currentIdx = idx;
         allSlides[currentIdx].classList.add('is-active');
         updateNav();
+        fitDeckContent();
       }
       function updateNav() {
         prevBtn.style.opacity = currentIdx > 0 ? '1' : '0.35';
@@ -542,6 +543,35 @@
       }
       updateNav();
 
+      function fitDeckContent() {
+        document.querySelectorAll('.t-e__txt--cols, .t-c__txt-inner, .t-cm__txt-inner, .t-b__txt-inner').forEach(function(el) {
+          el.style.transform = '';
+        });
+        if (window.innerWidth <= 767) return;
+        var activeSec = document.querySelector('.sec.is-active');
+        if (!activeSec) return;
+        var candidateSelectors = ['.t-e__txt--cols', '.t-c__txt-inner', '.t-cm__txt-inner', '.t-b__txt-inner'];
+        var target = null;
+        for (var i = 0; i < candidateSelectors.length; i++) {
+          var found = activeSec.querySelector(candidateSelectors[i]);
+          if (found) { target = found; break; }
+        }
+        if (!target) return;
+        var hdr = document.querySelector('.hdr');
+        var hdrH = hdr ? hdr.getBoundingClientRect().height : 0;
+        var safeMargin = 24;
+        var parentBox = target.closest('.t-e, .t-c__txt, .t-cm__txt, .t-b__txt') || activeSec;
+        var availableHeight = parentBox.getBoundingClientRect().height - (safeMargin * 2);
+        if (parentBox === activeSec) {
+          availableHeight = window.innerHeight - hdrH - (safeMargin * 2);
+        }
+        var contentHeight = target.scrollHeight;
+        if (contentHeight > availableHeight && availableHeight > 0) {
+          var scale = availableHeight / contentHeight;
+          target.style.transform = 'scale(' + scale + ')';
+          target.style.transformOrigin = 'center center';
+        }
+      }
       function fitHero() {
         var hero = document.querySelector('.page-hero.is-active') || document.querySelector('.page-hero');
         var inner = hero ? hero.querySelector('.page-hero__inner') : null;
@@ -564,10 +594,14 @@
         hero.style.overflow = 'hidden';
       }
       window.addEventListener('resize', fitHero);
+      window.addEventListener('resize', fitDeckContent);
       window.addEventListener('load', fitHero);
+      window.addEventListener('load', fitDeckContent);
       fitHero();
-      [600, 1200, 2000, 3000].forEach(function (t) { setTimeout(fitHero, t); });
+      fitDeckContent();
+      [600, 1200, 2000, 3000].forEach(function (t) { setTimeout(fitHero, t); setTimeout(fitDeckContent, t); });
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitHero);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitDeckContent);
     })();
   </script>
 </body>
